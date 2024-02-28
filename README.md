@@ -36,10 +36,10 @@ Gabela aims to strike a balance between simplicity and flexibility. Here are som
 
 ## Installation
 
-1. Clone the Gabela repository:
+1. Clone the Gabela repository: [https://github.com/your-username/gabela.git](https://github.com/gabela-framework/gabela.git)
 
     ```bash
-    git clone [https://github.com/your-username/gabela.git](https://github.com/gabela-framework/gabela.git)
+    git clone https://github.com/gabela-framework/gabela.git
     ```
 
 2. Install dependencies using Composer:

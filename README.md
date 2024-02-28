@@ -49,9 +49,11 @@ $router->get('/', 'HomeController::index')->pass('guest');
 $router->post('/submit', 'FormController::submit')->pass('auth');
 $router->post('/admin', 'AdminPageController::Index')->pass('admin');
 ```
+The routing for this framework is quit unique and complex yet easy to implement, the drive for the complex routing is the make sure that we cater for the security of your application by implementing the middleware.
 
 ## Controllers
-Controllers handle user requests and invoke the corresponding actions. Create controllers in the controllers directory.
+-	Controllers handle user requests and invoke the corresponding actions. Create controllers in the controllers directory.
+-	In the `gabela\core` you will fine the abstractClass where renderView and getTemplate methods are declared.
 
 ```php
 class HomeController extends ControllerAbstract
@@ -103,6 +105,11 @@ Middleware provides a convenient mechanism for filtering HTTP requests entering 
 
 ## Modules
 Organize your application into modules for better structure and maintainability. Use the vendor directory for third-party modules.
+The 1st module created for the framework as a beta is `gabela-users` which you will get with the framework on the installation. you can also install it using composer.
+```sh
+composer require gabela/gabela-users
+```
+You can find the module in the `vendor/gabela/gabela-users`
 
 ## Error Handling
 Handle errors gracefully using the error handler defined in the ErrorHandler class.
@@ -112,9 +119,3 @@ This documentation provides a basic overview of the Gabela framework. Refer to t
 For advanced features and customization options, consult the official documentation or the developer community.
 
 * # Happy coding with Gabela Framework!!!
-
-
-
-
-
-

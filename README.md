@@ -1,6 +1,22 @@
 # Gabela Framework
 
-Gabela is a lightweight PHP framework designed to simplify web application development. It follows the MVC (Model-View-Controller) architecture and provides essential tools for building scalable and maintainable applications with the use of composer to require any libs that you would need.
+Gabela is a lightweight PHP framework designed to simplify web application development. It follows the MVC (Model-View-Controller) architecture and provides essential tools for building scalable and maintainable applications. This framework is crafted to minimize development complexity and offers developers the freedom to choose their preferred templating language, styling framework (e.g., Bootstrap), and jQuery libraries.
+
+## Overview
+
+Gabela aims to strike a balance between simplicity and flexibility. Here are some key features and principles:
+
+- **Flexibility:** Gabela doesn't impose strict conventions, allowing developers to choose their preferred tools and libraries for templating and styling. Use Bootstrap or any other CSS framework that suits your project.
+
+- **Templating Language:** Gabela provides the freedom to use any templating language of your choice. Whether it's plain PHP or a templating engine like Twig, you have the flexibility to structure your views according to your preference.
+
+- **Security Focus:** Gabela places a strong emphasis on user authentication and ongoing security. It includes features and practices that help developers build secure applications, and it is designed to adapt to evolving security standards.
+
+- **Authentication:** The framework simplifies user authentication, making it easy to implement secure login systems and protect sensitive areas of your application.
+
+- **Modular Structure:** Organize your application into modules for better structure and maintainability. Use the `vendor` directory for third-party modules, and create your modules in a modular structure.
+
+- **Freedom of Choice:** Gabela does not restrict developers to a specific set of tools or libraries. It encourages the use of industry-standard components but gives you the freedom to make choices based on your project's requirements.
 
 ## Table of Contents
 
@@ -119,3 +135,9 @@ This documentation provides a basic overview of the Gabela framework. Refer to t
 For advanced features and customization options, consult the official documentation or the developer community.
 
 * # Happy coding with Gabela Framework!!!
+
+
+
+
+
+

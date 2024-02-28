@@ -45,8 +45,9 @@ Configuration settings are stored in the `config` directory. Update the `gabela/
 Define routes in the `router.php` file. Use the `Gabela\Core\Router` class to map URLs to controller actions.
 
 ```php
-$router->get('/', 'HomeController@index');
-$router->post('/submit', 'FormController@submit');
+$router->get('/', 'HomeController::index')->pass('guest');
+$router->post('/submit', 'FormController::submit')->pass('auth');
+$router->post('/admin', 'AdminPageController::Index')->pass('admin');
 ```
 
 ## Controllers

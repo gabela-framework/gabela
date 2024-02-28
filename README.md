@@ -30,7 +30,7 @@ Gabela is a lightweight PHP framework designed to simplify web application devel
     composer install
     ```
 
-3. Configure your web server to point to the `public` directory.
+3. Configure your web server to point to the root directory if using apache make sure you change the Base in the .htaccess as required.
 
 ## Getting Started
 

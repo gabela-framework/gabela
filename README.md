@@ -2,6 +2,8 @@
 
 Gabela is a lightweight PHP framework designed to simplify web application development. It follows the MVC (Model-View-Controller) architecture and provides essential tools for building scalable and maintainable applications. This framework is crafted to minimize development complexity and offers developers the freedom to choose their preferred templating language, styling framework (e.g., Bootstrap), and jQuery libraries.
 
+![gabela logo](https://github.com/gabela-framework/gabela/assets/161472830/d3513f4b-da42-4126-b923-78839d9f87c8)
+
 ## Overview
 
 Gabela aims to strike a balance between simplicity and flexibility. Here are some key features and principles:

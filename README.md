@@ -136,7 +136,48 @@ This documentation provides a basic overview of the Gabela framework. Refer to t
 
 For advanced features and customization options, consult the official documentation or the developer community.
 
-* # Happy coding with Gabela Framework!!!
+
+
+## Creating Your First Hello World Page in Gabela Framework
+# Step 1: Craft a Controller
+Begin by crafting a controller class within the `gabela/controllers` directory. Here's a snippet to create the `HelloWorldController`:
+
+```php
+<?php
+
+namespace Gabela\Controller;
+
+class HelloWorldController extends \Gabela\Core\AbstractController
+{
+    public function Action()
+    {
+        // Your controller logic goes here
+        printValue('Hello World');
+    }
+}
+```
+
+# Step 2: Configure Your Router
+In the `router.php` file, configure the routing for your new page:
+
+```php
+$router->get("{$extensionPath}/hello-world", "HelloWorldController::Action")->pass('guest');
+```
+
+# Step 3: Add Namespace and Path
+In the `gabela/config/GabelaPathsConfig.php` file, integrate the namespace and path for your controller:
+
+```php
+'HelloWorldController' => [
+    'namespace' => 'Gabela\\Controller\\',
+    'path' => BASE_PATH . '/gabela/controllers/',
+],
+```
+Now you're all set! Navigate to your page at http://site.local/hello-world and witness your "Hello World" message in action.
+
+## Happy coding with Gabela Framework! 🚀
+
+
 
 
 

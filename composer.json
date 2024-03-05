@@ -1,0 +1,33 @@
+{
+    "name": "gabela/micro-framework",
+    "description": "This the next big thing in the php frameworks community",
+    "type": "project",
+    "version": "1.2.4",
+    "authors": [
+        {
+            "name": "Ntabethemba Ntshoza",
+            "email": "bmaneza@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "monolog/monolog": "^3.5",
+        "aternus/geonames-client": "^2.3",
+        "phpmailer/phpmailer": "^6.9",
+        "league/event": "^3.0",
+        "gabela/gabela-users": "^1.0",
+        "gabela/gabela-tasks": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gabela\\Controller\\": "gabela/controllers/",
+            "Gabela\\Core\\": "gabela/core/",
+            "Gabela\\Core\\Events\\": "gabela/core/events/",
+            "Gabela\\Model\\": "gabela/models/"
+        }
+    },
+    "config": {
+        "minimum-stability": "dev",
+        "prefer-stable": true
+    }
+}

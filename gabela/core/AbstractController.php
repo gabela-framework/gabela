@@ -52,7 +52,7 @@ abstract class AbstractController
      */
     public function loadController($controller)
     {
-        $config = getIncluded('/gabela/config/ControllerConfig.php');
+        $config = getIncluded(WEB_CONFIGS);
 
         if (array_key_exists($controller, $config)) {
             $controllerData = $config[$controller];

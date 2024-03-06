@@ -61,43 +61,72 @@ class Router extends AbstractController
                 if (!empty($route['middleware'])) {
                     Middleware::resolve($route['middleware']);
                 }
-
+    
                 // Extract controller and method from the route
                 [$controllerClass, $method] = explode('::', $route['controller']);
-
+    
                 $controllerClass = $this->loadController($controllerClass);
-
-                $requestUri = $_SERVER['REQUEST_URI'];
-
-                // Find the position of '?' in the request URI
-                $queryPosition = strpos($requestUri, '?');
-
-                // Extract the path and query parameters
-
-                $queryParams = [];
-
-                // Extract parameters from query string if they are required
-                if ($queryPosition !== false) {
-                    parse_str(substr($requestUri, $queryPosition + 1), $queryParams);
+    
+                // Check if the controller class has a constructor
+                $reflection = new \ReflectionClass($controllerClass);
+                
+                if ($reflection->hasMethod('__construct')) {
+                    $constructor = $reflection->getMethod('__construct');
+                    $constructorParameters = $constructor->getParameters();
+                    
+                    // Check if the constructor has parameters
+                    if (!empty($constructorParameters)) {
+                        $routeParams = [];
+    
+                        foreach ($constructorParameters as $param) {
+                            // Check if the parameter has a default value
+                            if ($param->isDefaultValueAvailable()) {
+                                // Use the default value
+                                $routeParams[] = $param->getDefaultValue();
+                                dd($routeParams);
+                            } else {
+                                // Check if the parameter has a type
+                                $paramType = $param->getType();
+    
+                                if ($paramType !== null && !$paramType->isBuiltin()) {
+                                    // Use ReflectionClass::getName() to get the class name
+                                    $className = $paramType->getName();
+    
+                                    // You may need to adjust this part based on how your parameters are determined
+                                    $routeParams[] = new $className();
+                                } else {
+                                    // Handle non-class parameters if needed
+                                    $routeParams[] = '';
+                                }
+                            }
+                        }
+    
+                        // Create an instance of the controller with constructor parameters
+                        $controllerInstance = $reflection->newInstanceArgs($routeParams);
+                    } else {
+                        // Create an instance of the controller without constructor parameters
+                        $controllerInstance = new $controllerClass();
+                    }
+                } else {
+                    // Create an instance of the controller without a constructor
+                    $controllerInstance = new $controllerClass();
                 }
-
-                // Pass $queryParams to the method
-                $controllerInstance = new $controllerClass();
-
+    
                 // Call the specified method
                 if (method_exists($controllerInstance, $method)) {
                     $controllerInstance->$method();
                 } else {
                     $this->abort();
                 }
-
+    
                 // Exit the loop after processing the route
                 return;
             }
         }
-
+    
         $this->abort();
     }
+    
 
     public function previousUrl()
     {

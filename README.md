@@ -41,6 +41,10 @@ Gabela aims to strike a balance between simplicity and flexibility. Here are som
     ```bash
     git clone https://github.com/gabela-framework/gabela.git
     ```
+    or use composer
+```composer
+composer create-project gabela/micro-framework
+```
 
 2. Install dependencies using Composer:
 

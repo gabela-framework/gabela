@@ -1,6 +1,5 @@
 # give permissions
 sudo chmod -R 0777 .
-sudo chown -R maneza:maneza .
 
 # composer clean and run
 composer dump

@@ -2,9 +2,9 @@
 
 session_start();
 
-require __DIR__ . '/core/functions.php';
-require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ .'/config/RequiredPaths.php';
+require_once  __DIR__ . '/core/functions.php';
+require_once  __DIR__ . '/../vendor/autoload.php';
+require_once  __DIR__ .'/config/RequiredPaths.php';
 
 getIncluded('gabela/helper/vendorFilesIncludes.php');
 

@@ -29,6 +29,7 @@ try {
 } catch (Exception $e) {
     $logger->critical('Cannot get the targeted controller check the classes and try again', ['exception' => $e]);
     echo('There seem to be issues with the routing check your files and try again');
-    var_dump($e);
+    throw new \Exception($e);
+
      $router->previousUrl();
 }

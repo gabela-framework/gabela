@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "64a612c46ec486cbc19342294254a309",
+    "content-hash": "2ac5eee6f1cbc58baa378cf2ec0271ce",
     "packages": [
         {
             "name": "aternus/geonames-client",
@@ -69,16 +69,16 @@
         },
         {
             "name": "gabela/gabela-tasks",
-            "version": "1.2.1",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gabela-framework/gabela-tasks.git",
-                "reference": "7c020cbbe1014733bb1227c5b910c67ce7189657"
+                "reference": "04e739fbf457aa01e1f594c0229d33c6432ea582"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gabela-framework/gabela-tasks/zipball/7c020cbbe1014733bb1227c5b910c67ce7189657",
-                "reference": "7c020cbbe1014733bb1227c5b910c67ce7189657",
+                "url": "https://api.github.com/repos/gabela-framework/gabela-tasks/zipball/04e739fbf457aa01e1f594c0229d33c6432ea582",
+                "reference": "04e739fbf457aa01e1f594c0229d33c6432ea582",
                 "shasum": ""
             },
             "require": {
@@ -109,22 +109,22 @@
             ],
             "support": {
                 "issues": "https://github.com/gabela-framework/gabela-tasks/issues",
-                "source": "https://github.com/gabela-framework/gabela-tasks/tree/1.2.1"
+                "source": "https://github.com/gabela-framework/gabela-tasks/tree/1.2.3"
             },
-            "time": "2024-03-05T13:13:13+00:00"
+            "time": "2024-03-06T10:37:21+00:00"
         },
         {
             "name": "gabela/gabela-users",
-            "version": "1.4.2",
+            "version": "1.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gabela-framework/gabela-users.git",
-                "reference": "96e0c80aeeac9bce0e33a5d78bdffb85cc3c6543"
+                "reference": "836fe12e967b2318417b3a12c3c79d55a2ef1dc0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gabela-framework/gabela-users/zipball/96e0c80aeeac9bce0e33a5d78bdffb85cc3c6543",
-                "reference": "96e0c80aeeac9bce0e33a5d78bdffb85cc3c6543",
+                "url": "https://api.github.com/repos/gabela-framework/gabela-users/zipball/836fe12e967b2318417b3a12c3c79d55a2ef1dc0",
+                "reference": "836fe12e967b2318417b3a12c3c79d55a2ef1dc0",
                 "shasum": ""
             },
             "require": {
@@ -155,9 +155,9 @@
             ],
             "support": {
                 "issues": "https://github.com/gabela-framework/gabela-users/issues",
-                "source": "https://github.com/gabela-framework/gabela-users/tree/1.4.2"
+                "source": "https://github.com/gabela-framework/gabela-users/tree/1.4.5"
             },
-            "time": "2024-03-02T08:34:13+00:00"
+            "time": "2024-03-06T06:40:00+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1105,5 +1105,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.0.0"
 }

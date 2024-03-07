@@ -83,7 +83,7 @@ class Router extends AbstractController
                             if ($param->isDefaultValueAvailable()) {
                                 // Use the default value
                                 $routeParams[] = $param->getDefaultValue();
-                                dd($routeParams);
+                        
                             } else {
                                 // Check if the parameter has a type
                                 $paramType = $param->getType();
@@ -91,7 +91,6 @@ class Router extends AbstractController
                                 if ($paramType !== null && !$paramType->isBuiltin()) {
                                     // Use ReflectionClass::getName() to get the class name
                                     $className = $paramType->getName();
-    
                                     // You may need to adjust this part based on how your parameters are determined
                                     $routeParams[] = new $className();
                                 } else {

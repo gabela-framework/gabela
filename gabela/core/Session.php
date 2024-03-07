@@ -14,7 +14,7 @@ class Session
         return $_SESSION['user_name'];
     }
 
-    public function getCurremtUser()
+    public function getCurrentUser()
     {
         $currentUser = [
             'id' => $this->getCurrentUserId(),

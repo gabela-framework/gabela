@@ -55,6 +55,8 @@
                         <input type="password" class="form-control" name="confirmPassword" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Reset Password</button>
+                    <br />
+                    <h1><a href="<?= EXTENTION_PATH ?>/login" >Back to Home page to register </a></h1>
                 </form>
             </div>
         </div>

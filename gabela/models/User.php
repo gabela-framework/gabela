@@ -254,8 +254,6 @@ class User implements UserInterface
         }
     }
 
-
-
     /**
      * Validate Password
      * @param string $password
@@ -311,13 +309,16 @@ class User implements UserInterface
             try {
                 if ($stmt->execute()) {
                     // Send a reset email to the user with a link to reset their password
-                    $resetLink = "{$this->getSiteUrl('/reset-password')}?email=" . $email . "&token=" . $resetToken; //edit this to your website url if you not getting it
+                    // $resetLink = "{$this->getSiteUrl('/reset-password')}?email=" . $email . "&token=" . $resetToken;
+                    $resetLink = "{$this->getSiteUrl('/reset-password')}?email=" . urlencode($email) . "&token=" . urlencode($resetToken);
                     $message = "To reset your password, click on the following link:\n" . "<a href='{$resetLink}'>Reset your password now</a>";
-                    $_SESSION['reset_password'] =  $message;
-                    $_SESSION['email'] =  $email;
-                    $_SESSION['token'] =  $resetToken;
 
-                    return true;
+                    $_SESSION['reset_password'] = $message;
+                    $_SESSION['email'] = $email;
+                    $_SESSION['token'] = $resetToken;
+
+                    // Return the message and token
+                    return ['message' => $message, 'token' => $resetToken];
                 }
             } catch (Exception $e) {
                 $_SESSION['registration_error'] = 'An error occurred while registering. This email address is already in use.';
@@ -370,7 +371,7 @@ class User implements UserInterface
                 }
             }
 
-            $_SESSION['wrong_email'] =  "{$email} does not exist, please verify and try again...";
+            $_SESSION['wrong_email'] = "{$email} does not exist, please verify and try again...";
             // The loop has finished checking all users, and the email doesn't exist
             return false;
         }
@@ -524,6 +525,34 @@ class User implements UserInterface
     }
 
 
+            /**
+     * Get a user by Email Address
+     *
+     * @param string $email
+     * @return mixed
+     */
+    public function getUserByEmail($email)
+    {
+        // Prepare the SQL statement to retrieve user data by user_id
+        $sql = "SELECT * FROM users WHERE email = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $email);
+
+        if ($stmt->execute()) {
+            // Execute the query
+            $result = $stmt->get_result();
+
+            // Check if a user with the provided user_id exists
+            if ($result->num_rows === 1) {
+                // Fetch user data
+                $userData = $result->fetch_assoc();
+                return $userData;
+            }
+        }
+
+        return null; // User not found or query failed
+    }
+    
     /**
      * Function to update an existing user in the database
      *
@@ -652,6 +681,6 @@ class User implements UserInterface
             }
         }
 
-        return null; 
+        return null;
     }
 }

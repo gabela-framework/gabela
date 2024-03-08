@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ac5eee6f1cbc58baa378cf2ec0271ce",
+    "content-hash": "a60435e6398cca01acd930e0a9b15ca4",
     "packages": [
         {
             "name": "aternus/geonames-client",
@@ -68,63 +68,17 @@
             "time": "2024-01-03T00:01:26+00:00"
         },
         {
-            "name": "gabela/gabela-tasks",
-            "version": "1.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/gabela-framework/gabela-tasks.git",
-                "reference": "04e739fbf457aa01e1f594c0229d33c6432ea582"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/gabela-framework/gabela-tasks/zipball/04e739fbf457aa01e1f594c0229d33c6432ea582",
-                "reference": "04e739fbf457aa01e1f594c0229d33c6432ea582",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.2.5 || ^8.0"
-            },
-            "type": "plugin",
-            "autoload": {
-                "psr-4": {
-                    "Gabela\\Tasks\\Model\\": "gabela-tasks/models/",
-                    "Gabela\\Tasks\\Controller\\": "gabela-tasks/controllers/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ntabethemba Ntshoza",
-                    "email": "bmaneza@gmail.com"
-                }
-            ],
-            "description": "Gabela task's module",
-            "keywords": [
-                "Tasks",
-                "framework",
-                "gabela"
-            ],
-            "support": {
-                "issues": "https://github.com/gabela-framework/gabela-tasks/issues",
-                "source": "https://github.com/gabela-framework/gabela-tasks/tree/1.2.3"
-            },
-            "time": "2024-03-06T10:37:21+00:00"
-        },
-        {
             "name": "gabela/gabela-users",
-            "version": "1.4.5",
+            "version": "1.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gabela-framework/gabela-users.git",
-                "reference": "836fe12e967b2318417b3a12c3c79d55a2ef1dc0"
+                "reference": "c7a5a0f7deb2f40c0ebdada272bdd450590ca520"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gabela-framework/gabela-users/zipball/836fe12e967b2318417b3a12c3c79d55a2ef1dc0",
-                "reference": "836fe12e967b2318417b3a12c3c79d55a2ef1dc0",
+                "url": "https://api.github.com/repos/gabela-framework/gabela-users/zipball/c7a5a0f7deb2f40c0ebdada272bdd450590ca520",
+                "reference": "c7a5a0f7deb2f40c0ebdada272bdd450590ca520",
                 "shasum": ""
             },
             "require": {
@@ -155,9 +109,54 @@
             ],
             "support": {
                 "issues": "https://github.com/gabela-framework/gabela-users/issues",
-                "source": "https://github.com/gabela-framework/gabela-users/tree/1.4.5"
+                "source": "https://github.com/gabela-framework/gabela-users/tree/1.4.6"
             },
-            "time": "2024-03-06T06:40:00+00:00"
+            "time": "2024-03-07T13:21:18+00:00"
+        },
+        {
+            "name": "gabela/tasks",
+            "version": "1.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gabela-framework/tasks.git",
+                "reference": "7e9be27d77c2a284ad38d0a147ce010dd317f43a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gabela-framework/tasks/zipball/7e9be27d77c2a284ad38d0a147ce010dd317f43a",
+                "reference": "7e9be27d77c2a284ad38d0a147ce010dd317f43a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2.5 || ^8.0"
+            },
+            "type": "plugin",
+            "autoload": {
+                "psr-4": {
+                    "Gabela\\Tasks\\": "tasks/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ntabethemba Ntshoza",
+                    "email": "bmaneza@gmail.com"
+                }
+            ],
+            "description": "Gabela task's module",
+            "keywords": [
+                "Tasks",
+                "framework",
+                "gabela"
+            ],
+            "support": {
+                "issues": "https://github.com/gabela-framework/tasks/issues",
+                "source": "https://github.com/gabela-framework/tasks/tree/1.2.4"
+            },
+            "time": "2024-03-07T12:09:00+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1105,5 +1104,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.6.0"
 }

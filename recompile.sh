@@ -2,8 +2,9 @@
 sudo chmod -R 0777 .
 
 # composer clean and run
-composer dump
 composer clearcache
+composer dump-autoload
+composer install
 composer update
 
 # give permitions again

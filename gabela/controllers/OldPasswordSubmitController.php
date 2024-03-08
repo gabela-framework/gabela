@@ -3,9 +3,21 @@
 namespace Gabela\Controller;
 
 use Gabela\Model\User;
+use League\Event\EventDispatcher;
+use Gabela\Core\Events\ForgetPasswordEvent;
+use Gabela\Controller\ForgotPasswordController;
+
 class OldPasswordSubmitController
 {
-    public static function submit()
+    /**
+     * @var EventDispatcher
+     */
+    private EventDispatcher $dispatcher;
+
+    public function __construct(EventDispatcher $dispatcher){
+        $this->dispatcher = $dispatcher;
+    }
+    public function submit()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Get form data (new password)
@@ -25,7 +37,8 @@ class OldPasswordSubmitController
                     // Update the user's password (ensure it's securely hashed)
                     $user->updatePassword($email, $newPassword);
         
-                    // Password updated successfully        
+                    // Password updated successfully  
+    
                     printValue('<meta http-equiv="refresh" content="5;url=/">');
 
                     // return redirect('');

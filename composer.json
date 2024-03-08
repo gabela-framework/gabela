@@ -16,7 +16,7 @@
         "phpmailer/phpmailer": "^6.9",
         "league/event": "^3.0",
         "gabela/gabela-users": "^1.0",
-        "gabela/gabela-tasks": "^1.2"
+        "gabela/tasks": "^1.2"
     },
     "autoload": {
         "psr-4": {

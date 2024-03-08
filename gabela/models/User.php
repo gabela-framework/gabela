@@ -316,7 +316,7 @@ class User implements UserInterface
                     $_SESSION['reset_password'] = $message;
                     $_SESSION['email'] = $email;
                     $_SESSION['token'] = $resetToken;
-
+                    $_SESSION['updated_password'] = "The reset password link is been sent to your email check the email and reset your password!";
                     // Return the message and token
                     return ['message' => $message, 'token' => $resetToken];
                 }

@@ -24,28 +24,32 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <?php if (isset($_SESSION['reset_password'])) : ?>
+                <?php if (isset($_SESSION['reset_password'])): ?>
                     <div class="alert alert-success"><?php printValue($_SESSION['reset_password']); ?></div>
                     <?php unset($_SESSION['reset_password']); // Clear the message after displaying
-                    ?>
+                        ?>
                 <?php endif; ?>
 
-                <?php if (isset($_SESSION['error_password'])) : ?>
+                <?php if (isset($_SESSION['error_password'])): ?>
                     <div class="alert alert-error"><?php printValue($_SESSION['error_password']); ?></div>
                     <?php unset($_SESSION['error_password']);
                     ?>
                 <?php endif; ?>
 
                 <h1 class="text-center">Reset Your Password</h1>
-                <?php if (isset($resetPasswordSuccess)) : ?>
+                <?php if (isset($resetPasswordSuccess)): ?>
                     <p class="text-success"><?php printValue($resetPasswordSuccess); ?></p>
                 <?php endif; ?>
 
-                <?php if (isset($resetPasswordError)) : ?>
+                <?php if (isset($resetPasswordError)): ?>
                     <p class="text-success"><?php printValue($resetPasswordError); ?></p>
                 <?php endif; ?>
 
                 <form method="post" action="<?= EXTENTION_PATH ?>/reset-password-submit">
+                    <!-- Include hidden input fields for email and token -->
+                    <input type="hidden" name="email" value="<?= htmlspecialchars($_GET['email'] ?? '') ?>">
+                    <input type="hidden" name="token" value="<?= htmlspecialchars($_GET['token'] ?? '') ?>">
+
                     <div class="form-group">
                         <label for="newPassword">New Password:</label>
                         <input type="password" class="form-control" name="newPassword" required>
@@ -56,7 +60,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Reset Password</button>
                     <br />
-                    <h1><a href="<?= EXTENTION_PATH ?>/login" >Back to Home page to register </a></h1>
+                    <h1><a href="<?= EXTENTION_PATH ?>/login">Back to Home page to register </a></h1>
                 </form>
             </div>
         </div>

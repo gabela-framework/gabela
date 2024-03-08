@@ -44,28 +44,13 @@ class ResetPasswordSubmitController
                     if (isset($_SESSION['email']) && isset($_SESSION['token'])) {
                         $email = $_SESSION['email'];
                         $token = $_SESSION['token'];
-                    } 
-
-                    $currentUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-                    
-                    $urlComponents = parse_url($currentUrl);
-
-                    // Check if the query string is present
-                    if (isset($urlComponents['query'])) {
-                        // Parse the query string to get individual parameters
-                        parse_str($urlComponents['query'], $queryParams);
-
-                        // Check if the required parameters (email and token) are present
-                        if (isset($queryParams['email']) && isset($queryParams['token'])) {
-                            // Retrieve email and token values
-                            $email = $queryParams['email'];
-                            $token = $queryParams['token'];
-                        }
                     }
 
+                    // Check if the provided email and token are valid
+                    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+                    $token = filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING);
+
                     if (!empty($email) && !empty($token)) {
-                        // $email = $queryParams['email']; // You can get these from the query parameters.
-                        // $token = $queryParams['token'];
 
                         if ($this->userCollection->isValidPasswordResetRequest($email, $token)) {
                             // Update the user's password (ensure it's securely hashed)

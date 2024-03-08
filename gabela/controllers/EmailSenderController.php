@@ -9,7 +9,7 @@
 
 namespace Gabela\Controller;
 
-getIncluded(USER_MODEL);
+// getIncluded(USER_MODEL);
 
 use Monolog\Logger;
 use Gabela\Model\Person;

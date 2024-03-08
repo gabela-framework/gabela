@@ -9,7 +9,7 @@ class AdminController extends AbstractController
 {
     public function Action()
     {
-        printValue('This is the admin page');
+        printValue('You are authorized to be in this page');
     }
 }
 

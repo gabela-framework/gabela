@@ -4,12 +4,13 @@ namespace Gabela\Controller;
 
 //getRequired(USER_MODEL);
 
-use Gabela\Core\Events\ForgetPasswordEvent;
+use Throwable;
+use Monolog\Logger;
 use Gabela\Model\User;
+use Gabela\Core\Session;
 use League\Event\EventDispatcher;
 use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
-use Throwable;
+use Gabela\Core\Events\ForgetPasswordEvent;
 
 class ForgotPasswordSubmitController
 {
@@ -60,6 +61,8 @@ class ForgotPasswordSubmitController
 
                         $this->emailSender->sendForgetPasswordEmail($email, $message, $token); // send the email without the dispatcher
 
+                        Session::flush();
+                        
                         return redirect('/login');
                     }
                 } catch (Throwable $e) {

@@ -69,16 +69,16 @@
         },
         {
             "name": "gabela/gabela-users",
-            "version": "1.4.6",
+            "version": "1.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gabela-framework/gabela-users.git",
-                "reference": "c7a5a0f7deb2f40c0ebdada272bdd450590ca520"
+                "reference": "4c51cbfeed9a6568e430e9fcd0bea5de42bb6322"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gabela-framework/gabela-users/zipball/c7a5a0f7deb2f40c0ebdada272bdd450590ca520",
-                "reference": "c7a5a0f7deb2f40c0ebdada272bdd450590ca520",
+                "url": "https://api.github.com/repos/gabela-framework/gabela-users/zipball/4c51cbfeed9a6568e430e9fcd0bea5de42bb6322",
+                "reference": "4c51cbfeed9a6568e430e9fcd0bea5de42bb6322",
                 "shasum": ""
             },
             "require": {
@@ -109,22 +109,22 @@
             ],
             "support": {
                 "issues": "https://github.com/gabela-framework/gabela-users/issues",
-                "source": "https://github.com/gabela-framework/gabela-users/tree/1.4.6"
+                "source": "https://github.com/gabela-framework/gabela-users/tree/1.4.7"
             },
-            "time": "2024-03-07T13:21:18+00:00"
+            "time": "2024-03-08T14:24:26+00:00"
         },
         {
             "name": "gabela/tasks",
-            "version": "1.2.4",
+            "version": "1.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gabela-framework/tasks.git",
-                "reference": "7e9be27d77c2a284ad38d0a147ce010dd317f43a"
+                "reference": "e8a856b661f9ea4c1d16e379e3dcaa91e365dd35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gabela-framework/tasks/zipball/7e9be27d77c2a284ad38d0a147ce010dd317f43a",
-                "reference": "7e9be27d77c2a284ad38d0a147ce010dd317f43a",
+                "url": "https://api.github.com/repos/gabela-framework/tasks/zipball/e8a856b661f9ea4c1d16e379e3dcaa91e365dd35",
+                "reference": "e8a856b661f9ea4c1d16e379e3dcaa91e365dd35",
                 "shasum": ""
             },
             "require": {
@@ -133,7 +133,8 @@
             "type": "plugin",
             "autoload": {
                 "psr-4": {
-                    "Gabela\\Tasks\\": "tasks/"
+                    "Gabela\\Tasks\\Model\\": "/tasks/models",
+                    "Gabela\\Tasks\\Controller\\": "/tasks/controllers"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -154,9 +155,9 @@
             ],
             "support": {
                 "issues": "https://github.com/gabela-framework/tasks/issues",
-                "source": "https://github.com/gabela-framework/tasks/tree/1.2.4"
+                "source": "https://github.com/gabela-framework/tasks/tree/1.2.5"
             },
-            "time": "2024-03-07T12:09:00+00:00"
+            "time": "2024-03-08T14:34:32+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

@@ -101,7 +101,7 @@ function getSiteUrl($path = '')
  * Redict to another path
  *
  * @param string $path
- * @return void
+ * @return string
  */
 function redirect($path)
 {

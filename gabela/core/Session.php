@@ -4,53 +4,68 @@ namespace Gabela\Core;
 
 class Session
 {
-    public function getCurrentUserId()
+    public static function getCurrentUserId()
     {
         $userID = null;
 
         if (isset($_SESSION['user_id'])) {
             $userID = $_SESSION['user_id'];
         } else {
-            throw new \InvalidArgumentException('User Session is not available you need to login first.');
+            $userID = "You not logged in";
         }
 
         return $userID;
     }
 
-    public function getCurrentUsername()
+    public static function  getCurrentUsername()
     {
         $username = null;
 
         if (isset($_SESSION['user_name'])) {
             $username = $_SESSION['user_name'];
         } else {
-            throw new \InvalidArgumentException('User Session is not available you need to login first.');
+            $username = 'You not logged in'; 
         }
 
         return $username;
     }
 
-    public function getCurrentUserEmail()
+    public static function getCurrentUserEmail()
     {
         $userEmail = null;
 
         if (isset($_SESSION['user_email'])) {
             $userEmail = $_SESSION['user_email'];
         } else {
-            throw new \InvalidArgumentException('User Session is not available you need to login first.');
+            $userEmail = 'You not logged in';        
         }
 
         return $userEmail;
     }
 
-    public function getCurrentUser()
+    public static function getCurrentUser()
     {
         $currentUser = [
-            'id' => $this->getCurrentUserId(),
-            'name' => $this->getCurrentUsername(),
-            'email' => $this->getCurrentUserEmail()
+            'id' => static::getCurrentUserId(),
+            'name' => static::getCurrentUsername(),
+            'email' => static::getCurrentUserEmail()
         ];
 
         return $currentUser;
+    }
+
+    public static function flush()
+    {
+        $_SESSION = [];
+    }
+
+    public static function destroy()
+    {
+        static::flush();
+
+        session_destroy();
+
+        $params = session_get_cookie_params();
+        setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
     }
 }

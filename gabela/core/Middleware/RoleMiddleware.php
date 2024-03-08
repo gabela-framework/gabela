@@ -2,7 +2,7 @@
 
 namespace Gabela\Core\Middleware;
 
-getRequired(USER_MODEL);
+//getRequired(USER_MODEL);
 
 use Gabela\Core\Middleware\Middleware;
 use Gabela\Core\Response;

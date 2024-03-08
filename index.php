@@ -1,5 +1,8 @@
 <?php
 
+# Error loging and tracking for local development
+ini_set('log_errors', 1);
+ini_set('error_log', 'var/error.log');
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -29,6 +32,7 @@ try {
 } catch (Exception $e) {
     $logger->critical('Cannot get the targeted controller check the classes and try again', ['exception' => $e]);
     echo('There seem to be issues with the routing check your files and try again');
-    var_dump($e);
+    throw new \Exception($e);
+
      $router->previousUrl();
 }

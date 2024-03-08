@@ -55,7 +55,7 @@
                         <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                     <button type="submit" class="btn btn-primary" name="reset">Reset Password</button>
-                    <h1><a href="<?= EXTENTION_PATH ?>/" >Back to Home page to register </a></h1>
+                    <h1><a href="<?= EXTENTION_PATH ?>/login" >Back to Home page to register </a></h1>
                 </form>
             </div>
         </div>

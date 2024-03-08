@@ -25,7 +25,7 @@ $cleanRoute = $queryPosition !== false ? substr($requestUri, 0, $queryPosition) 
 
 // Original route with the query string
 $route = $requestUri;
-
+var_dump($_SESSION);
 try {
     /** @var Gabela\Core\Router $router */
     $router->route($cleanRoute, $_SERVER['REQUEST_METHOD']);

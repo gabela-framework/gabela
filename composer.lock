@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b35bd9d1d4ec15d12bc50db2bea12187",
+    "content-hash": "2ca4e93d30bd8401859b2a9907909f5c",
     "packages": [
         {
             "name": "aternus/geonames-client",
@@ -68,17 +68,62 @@
             "time": "2024-01-03T00:01:26+00:00"
         },
         {
-            "name": "gabela/gabela-users",
-            "version": "1.4.7",
+            "name": "gabela/gabela-payfast",
+            "version": "1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/gabela-framework/gabela-users.git",
-                "reference": "4c51cbfeed9a6568e430e9fcd0bea5de42bb6322"
+                "url": "https://github.com/gabela-framework/gabela-payfast.git",
+                "reference": "f7c3238633d8e42808296a4376192e2182f25d5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gabela-framework/gabela-users/zipball/4c51cbfeed9a6568e430e9fcd0bea5de42bb6322",
-                "reference": "4c51cbfeed9a6568e430e9fcd0bea5de42bb6322",
+                "url": "https://api.github.com/repos/gabela-framework/gabela-payfast/zipball/f7c3238633d8e42808296a4376192e2182f25d5d",
+                "reference": "f7c3238633d8e42808296a4376192e2182f25d5d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2.5 || ^8.0"
+            },
+            "type": "plugin",
+            "autoload": {
+                "psr-4": {
+                    "Gabela\\Payfast\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ntabethemba Ntshoza",
+                    "email": "bmaneza@gmail.com"
+                }
+            ],
+            "description": "Gabela payfast's module",
+            "keywords": [
+                "framework",
+                "gabela",
+                "payfast"
+            ],
+            "support": {
+                "issues": "https://github.com/gabela-framework/gabela-payfast/issues",
+                "source": "https://github.com/gabela-framework/gabela-payfast/tree/1.0"
+            },
+            "time": "2024-03-12T09:46:43+00:00"
+        },
+        {
+            "name": "gabela/gabela-users",
+            "version": "1.4.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gabela-framework/gabela-users.git",
+                "reference": "a7e8bb7803322d72ca529583430e8748ebb10f6e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gabela-framework/gabela-users/zipball/a7e8bb7803322d72ca529583430e8748ebb10f6e",
+                "reference": "a7e8bb7803322d72ca529583430e8748ebb10f6e",
                 "shasum": ""
             },
             "require": {
@@ -109,22 +154,22 @@
             ],
             "support": {
                 "issues": "https://github.com/gabela-framework/gabela-users/issues",
-                "source": "https://github.com/gabela-framework/gabela-users/tree/1.4.7"
+                "source": "https://github.com/gabela-framework/gabela-users/tree/1.4.9"
             },
-            "time": "2024-03-08T14:24:26+00:00"
+            "time": "2024-03-11T11:43:34+00:00"
         },
         {
             "name": "gabela/tasks",
-            "version": "1.2.5",
+            "version": "1.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gabela-framework/tasks.git",
-                "reference": "e8a856b661f9ea4c1d16e379e3dcaa91e365dd35"
+                "reference": "d495e52cce5f9fa4f031883d61da90350fd4cf65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gabela-framework/tasks/zipball/e8a856b661f9ea4c1d16e379e3dcaa91e365dd35",
-                "reference": "e8a856b661f9ea4c1d16e379e3dcaa91e365dd35",
+                "url": "https://api.github.com/repos/gabela-framework/tasks/zipball/d495e52cce5f9fa4f031883d61da90350fd4cf65",
+                "reference": "d495e52cce5f9fa4f031883d61da90350fd4cf65",
                 "shasum": ""
             },
             "require": {
@@ -155,9 +200,9 @@
             ],
             "support": {
                 "issues": "https://github.com/gabela-framework/tasks/issues",
-                "source": "https://github.com/gabela-framework/tasks/tree/1.2.5"
+                "source": "https://github.com/gabela-framework/tasks/tree/1.2.6"
             },
-            "time": "2024-03-08T14:34:32+00:00"
+            "time": "2024-03-08T19:43:59+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

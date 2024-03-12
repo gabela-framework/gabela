@@ -19,6 +19,7 @@ const WEB_CONFIGS = "gabela/config/config.php";
 const USERS_BOOTSTRAP = "vendor/gabela/gabela-users/bootstrap.php";
 const TASKS_BOOTSTRAP = "vendor/gabela/tasks/bootstrap.php";
 const USER_CONTROLLER_CONFI = "vendor/gabela/gabela-users/helper/UsersControllerPaths.php";
+const PAYFAST_CONTROLLER_CONFI = "vendor/gabela/gabela-payfast/src/helper/PayfastControllerPaths.php";
 const TASKS_CONTROLLER_CONFI = "vendor/gabela/tasks/helper/TasksControllerPaths.php";
 const PAGE_HEAD = "gabela/views/partials/head.php";
 const USER_LOGIN_PAGE = "vendor/gabela/gabela-users/views/login.php";

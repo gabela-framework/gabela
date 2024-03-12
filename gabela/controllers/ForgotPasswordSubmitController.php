@@ -59,9 +59,7 @@ class ForgotPasswordSubmitController
                         $event = new ForgetPasswordEvent($email, $message, $token);
                         $this->dispatcher->dispatch($event);
 
-                        $this->emailSender->sendForgetPasswordEmail($email, $message, $token); // send the email without the dispatcher
-
-                        Session::flush();
+                        // $this->emailSender->sendForgetPasswordEmail($email, $message, $token); // send the email without the dispatcher
                         
                         return redirect('/login');
                     }

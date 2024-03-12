@@ -10,13 +10,13 @@ class ForgetPasswordEvent
 
     public function __construct(
         $email, 
-        $resetToken,
-        $message
+        $message,
+        $resetToken
         )
     {
         $this->email = $email;
-        $this->resetToken = $resetToken;
         $this->message = $message;
+        $this->resetToken = $resetToken;
     }
 
     public function getEmail()

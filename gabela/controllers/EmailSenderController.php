@@ -11,13 +11,13 @@ namespace Gabela\Controller;
 
 // getIncluded(USER_MODEL);
 
-use Monolog\Logger;
 use Gabela\Model\Person;
 use Gabela\Model\User;
-use PHPMailer\PHPMailer\SMTP;
 use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 
 class EmailSenderController
 {
@@ -25,6 +25,7 @@ class EmailSenderController
      * @var User
      */
     private User $userCollection;
+
     public function __construct()
     {
         $this->userCollection = new User();
@@ -121,7 +122,6 @@ class EmailSenderController
         $personData = $this->userCollection->getUserByEmail($email);
 
         $mail = new PHPMailer(true);
-        $person = new Person();
 
         $logger = new Logger('SEND-EMAIL');
         // Now add some handlers

@@ -32,4 +32,9 @@ return [
     //     'namespace' => 'Gabela\\Controller\\',
     //     'path' => BASE_PATH . '/gabela/controllers/',
     // ],
+
+    'PayfastController' => [
+        'namespace' => 'Gabela\\Payfast\\Controller\\',
+        'path' => BASE_PATH . '/gabela/payfast/controllers/',
+    ],
 ];

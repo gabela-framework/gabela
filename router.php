@@ -33,6 +33,11 @@ $router->post("{$extensionPath}/login-submit", "LoginController::login")->pass('
 $router->get("{$extensionPath}/logout", "LogoutController::logout")->pass('auth');
 $router->post("{$extensionPath}/register-submit", "RegisterController::register")->pass('guest');
 
+$router->post("{$extensionPath}/payfast-notify", "PayfastController::notify");
+$router->get("{$extensionPath}/payfast-success", "PayfastController::success");
+$router->get("{$extensionPath}/payfast-cancel", "PayfastController::cancel");
+$router->get("{$extensionPath}/payfast-form", "PayfastController::paymentForm");
+
 $router->get("{$extensionPath}/admin", "AdminController::Action")->pass('admin');
 
 return $router;

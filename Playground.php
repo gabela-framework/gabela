@@ -66,9 +66,6 @@ $result = binarySearch($array, $target);
 echo "\n\nElement found at index $result\n\n";
 
 
-
-
-
 // Simulating a database with an array
 $users = [
     1 => ['id' => 1, 'name' => 'John Doe', 'email' => 'john@example.com'],

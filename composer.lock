@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ca4e93d30bd8401859b2a9907909f5c",
+    "content-hash": "53c1cf2c24ee015b35b0ab4f8ae0089f",
     "packages": [
         {
             "name": "aternus/geonames-client",
@@ -69,16 +69,16 @@
         },
         {
             "name": "gabela/gabela-payfast",
-            "version": "1.0",
+            "version": "1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gabela-framework/gabela-payfast.git",
-                "reference": "f7c3238633d8e42808296a4376192e2182f25d5d"
+                "reference": "b96ffd0214c624842bdaa3ed4c006b96967a13d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gabela-framework/gabela-payfast/zipball/f7c3238633d8e42808296a4376192e2182f25d5d",
-                "reference": "f7c3238633d8e42808296a4376192e2182f25d5d",
+                "url": "https://api.github.com/repos/gabela-framework/gabela-payfast/zipball/b96ffd0214c624842bdaa3ed4c006b96967a13d8",
+                "reference": "b96ffd0214c624842bdaa3ed4c006b96967a13d8",
                 "shasum": ""
             },
             "require": {
@@ -108,9 +108,9 @@
             ],
             "support": {
                 "issues": "https://github.com/gabela-framework/gabela-payfast/issues",
-                "source": "https://github.com/gabela-framework/gabela-payfast/tree/1.0"
+                "source": "https://github.com/gabela-framework/gabela-payfast/tree/1.1"
             },
-            "time": "2024-03-12T09:46:43+00:00"
+            "time": "2024-03-12T10:40:42+00:00"
         },
         {
             "name": "gabela/gabela-users",
@@ -688,6 +688,60 @@
                 }
             ],
             "time": "2023-10-27T15:32:31+00:00"
+        },
+        {
+            "name": "payfast/payfast-php-sdk",
+            "version": "v1.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Payfast/payfast-php-sdk.git",
+                "reference": "015efcd2df3e580e023dae6e16c943328d38bb78"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Payfast/payfast-php-sdk/zipball/015efcd2df3e580e023dae6e16c943328d38bb78",
+                "reference": "015efcd2df3e580e023dae6e16c943328d38bb78",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": ">=6.0.0",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9",
+                "squizlabs/php_codesniffer": "^3.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PayFast\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Payfast",
+                    "email": "support@payfast.help"
+                }
+            ],
+            "description": "Payfast PHP Library",
+            "keywords": [
+                "api",
+                "onsite",
+                "payfast",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/Payfast/payfast-php-sdk/issues",
+                "source": "https://github.com/Payfast/payfast-php-sdk/tree/v1.1.6"
+            },
+            "abandoned": true,
+            "time": "2024-02-28T09:54:10+00:00"
         },
         {
             "name": "phpmailer/phpmailer",

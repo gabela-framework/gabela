@@ -9,7 +9,7 @@ class AdminController extends AbstractController
 {
     public function Action()
     {
-        printValue('You are authorized to be in this page');
+        $this->getTemplate('gabela/views/admin.view.php');
     }
 }
 

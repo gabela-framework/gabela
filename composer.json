@@ -2,7 +2,7 @@
     "name": "gabela/micro-framework",
     "description": "This the next big thing in the php frameworks community",
     "type": "project",
-    "version": "1.2.8",
+    "version": "1.2.9",
     "authors": [
         {
             "name": "Ntabethemba Ntshoza",
@@ -17,7 +17,8 @@
         "league/event": "^3.0",
         "gabela/gabela-users": "^1.0",
         "gabela/tasks": "^1.2",
-        "gabela/gabela-payfast": "^1.0"
+        "gabela/gabela-payfast": "^1.0",
+        "payfast/payfast-php-sdk": "^1.1"
     },
     "autoload": {
         "psr-4": {

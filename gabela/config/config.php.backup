@@ -22,6 +22,13 @@ return [
     ],
     'packegist' => [
         'token' => 'xxxxxxxxxxxx'
+    ],
+        'payfast' => [
+        'merchant_id'=> '10000100',
+        'merchant_key'=> '46f0cd694581a',
+        'passPhrase' => '1234',
+        'testMode' => true
     ]
-    // add more configs
+    // add more configs     'merchant_id' => '10000100',
+    //'merchant_key' => '46f0cd694581a',
 ];

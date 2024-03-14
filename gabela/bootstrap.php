@@ -42,6 +42,5 @@ $dispatcher = new EventDispatcher($listenerRegistry);
 $forgotListener = new ForgotPasswordEmailSenderListener(new EmailSenderController());
 
 // Subscribe to the event with the listener and priority
-
 $dispatcher->subscribeOnceTo(ForgetPasswordEvent::class, $forgotListener, ListenerPriority::HIGH);
 // $dispatcher->subscribeTo(NewUserRegisteredEvent::class, $listener, ListenerPriority::NORMAL);

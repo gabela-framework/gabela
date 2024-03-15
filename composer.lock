@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "53c1cf2c24ee015b35b0ab4f8ae0089f",
+    "content-hash": "0272442f74bc7c8a34667f96eaabd1f8",
     "packages": [
         {
             "name": "aternus/geonames-client",
@@ -69,19 +69,20 @@
         },
         {
             "name": "gabela/gabela-payfast",
-            "version": "1.1",
+            "version": "1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gabela-framework/gabela-payfast.git",
-                "reference": "b96ffd0214c624842bdaa3ed4c006b96967a13d8"
+                "reference": "fe3d61f1d0cab2812c5a368128b73a6379aac57a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gabela-framework/gabela-payfast/zipball/b96ffd0214c624842bdaa3ed4c006b96967a13d8",
-                "reference": "b96ffd0214c624842bdaa3ed4c006b96967a13d8",
+                "url": "https://api.github.com/repos/gabela-framework/gabela-payfast/zipball/fe3d61f1d0cab2812c5a368128b73a6379aac57a",
+                "reference": "fe3d61f1d0cab2812c5a368128b73a6379aac57a",
                 "shasum": ""
             },
             "require": {
+                "payfast/payfast-php-sdk": "^1.1",
                 "php": "^7.2.5 || ^8.0"
             },
             "type": "plugin",
@@ -108,9 +109,9 @@
             ],
             "support": {
                 "issues": "https://github.com/gabela-framework/gabela-payfast/issues",
-                "source": "https://github.com/gabela-framework/gabela-payfast/tree/1.1"
+                "source": "https://github.com/gabela-framework/gabela-payfast/tree/1.2"
             },
-            "time": "2024-03-12T10:40:42+00:00"
+            "time": "2024-03-14T14:17:58+00:00"
         },
         {
             "name": "gabela/gabela-users",
@@ -1204,5 +1205,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.2.0"
 }

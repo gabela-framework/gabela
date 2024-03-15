@@ -1,6 +1,10 @@
 <?php
 
 return [
+    'SettingsController' => [
+        'namespace' => 'Gabela\\Controller\\',
+        'path' => BASE_PATH . '/gabela/controllers/',
+    ],
     'IndexController' => [
         'namespace' => 'Gabela\\Controller\\',
         'path' => BASE_PATH . '/gabela/controllers/',
@@ -27,7 +31,7 @@ return [
         'path' => BASE_PATH . '/gabela/controllers/',
     ],
     // add more Controller configs
-    
+
     // 'NewController' => [
     //     'namespace' => 'Gabela\\Controller\\',
     //     'path' => BASE_PATH . '/gabela/controllers/',

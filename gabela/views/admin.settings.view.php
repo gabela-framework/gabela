@@ -63,10 +63,10 @@ use Gabela\Core\ClassManager;
     <!-- Sidebar -->
     <div class="sidebar">
         <ul>
-            <li><a href="#">Dashboard</a></li>
+            <li><a href="<?= BASE_URL . 'admin' ?>">Dashboard</a></li>
             <li><a href="<?= BASE_URL . 'tasks' ?>">Tasks</a></li>
             <li><a href="<?= BASE_URL . 'users' ?>">Users</a></li>
-            <li><a href="<?= BASE_URL . 'admin-settings' ?>">Settings</a></li>
+            <li><a href="#">Settings</a></li>
         </ul>
     </div>
 
@@ -94,8 +94,8 @@ use Gabela\Core\ClassManager;
         </div>
         <!-- Page Content -->
         <div class="content">
-            <h2>Dashboard</h2>
-            <p>Welcome to the admin dashboard.</p>
+            <h2>Settings</h2>
+            <p>Welcome to the Settings.</p>
         </div>
     </div>
 

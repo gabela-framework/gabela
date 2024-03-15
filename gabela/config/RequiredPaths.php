@@ -23,3 +23,4 @@ const PAYFAST_CONTROLLER_CONFI = "vendor/gabela/gabela-payfast/src/helper/Payfas
 const TASKS_CONTROLLER_CONFI = "vendor/gabela/tasks/helper/TasksControllerPaths.php";
 const PAGE_HEAD = "gabela/views/partials/head.php";
 const USER_LOGIN_PAGE = "vendor/gabela/gabela-users/views/login.php";
+const ADMIN_SETTINGS = "gabela/views/admin.settings.view.php";

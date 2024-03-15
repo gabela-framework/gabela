@@ -40,4 +40,7 @@ $router->get("{$extensionPath}/payfast-form", "PayfastController::paymentForm");
 
 $router->get("{$extensionPath}/admin", "AdminController::Action")->pass('admin');
 
+
+$router->get("{$extensionPath}/admin-settings", "SettingsController::Action")->pass('admin');
+
 return $router;

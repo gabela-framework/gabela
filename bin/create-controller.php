@@ -1,4 +1,5 @@
 <?php
+
 const BASE_PATH = __DIR__;
 
 require __DIR__ . "/../gabela/core/functions.php";

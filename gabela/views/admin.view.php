@@ -14,7 +14,25 @@ use Gabela\Core\ClassManager;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="assets/css/main.css" type="text/css" id="main-css">
+    <link rel="stylesheet" href="assets/includes/styles.css" type="text/css">
+
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.isotope.min.js"></script>
+    <script src="assets/js/jquery.prettyPhoto.js"></script>
+    <script src="assets/js/easing.js"></script>
+    <script src="assets/js/jquery.ui.totop.js"></script>
+    <script src="assets/js/selectnav.js"></script>
+    <script src="assets/js/ender.js"></script>
+    <script src="assets/js/jquery.lazyload.js"></script>
+    <script src="assets/js/jquery.flexslider-min.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/contact.js"></script>
+
     <style>
         .sidebar {
             height: 100vh;
@@ -61,9 +79,9 @@ use Gabela\Core\ClassManager;
 <body>
 
     <!-- Sidebar -->
-    <div class="sidebar">
-        <ul>
-            <li><a href="#">Dashboard</a></li>
+    <div class="main-menu sidebar">
+        <ul class="nav navbar-nav">
+            <li class="active menu-icon" ><a   class="fa fa-puzzle-piece" href="<?= BASE_URL . 'admin' ?>">Dashboard</a></li>
             <li><a href="<?= BASE_URL . 'tasks' ?>">Tasks</a></li>
             <li><a href="<?= BASE_URL . 'users' ?>">Users</a></li>
             <li><a href="<?= BASE_URL . 'admin-settings' ?>">Settings</a></li>

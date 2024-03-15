@@ -26,7 +26,7 @@ class Middleware
     /**
      * resolve the middleware
      *
-     * @param [type] $key
+     * @param string $key the auth router admin, guest, or auth
      * @return void
      */
     public static function resolve($key)

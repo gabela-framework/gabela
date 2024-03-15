@@ -6,6 +6,7 @@ use Gabela\Core\Router;
 use Gabela\Core\Middleware\Guest;
 use Gabela\Core\Middleware\Authenticated;
 use Gabela\Core\Middleware\RoleMiddleware;
+use Gabela\Core\Exception\GabelaInvalidRequestException;
 
 class Middleware
 {
@@ -37,7 +38,7 @@ class Middleware
         $middleware = self::MAP[$key] ?? false;
 
         if (!$middleware) {
-            throw new \Exception("No matching middleware found for key '{$key}'.");
+            throw new GabelaInvalidRequestException("No matching middleware found for key '{$key}'.");
         }
 
         (new $middleware(self::$router))->handle();

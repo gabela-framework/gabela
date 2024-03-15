@@ -2,7 +2,7 @@
     "name": "gabela/micro-framework",
     "description": "This the next big thing in the php frameworks community",
     "type": "project",
-    "version": "1.2.9",
+    "version": "1.3.0",
     "authors": [
         {
             "name": "Ntabethemba Ntshoza",
@@ -25,6 +25,7 @@
             "Gabela\\Controller\\": "gabela/controllers/",
             "Gabela\\Core\\": "gabela/core/",
             "Gabela\\Core\\Events\\": "gabela/core/events/",
+            "Gabela\\Core\\Exception\\": "gabela/core/exception/",
             "Gabela\\Model\\": "gabela/models/"
         }
     },

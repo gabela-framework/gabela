@@ -5,6 +5,7 @@ require __DIR__ . "/../gabela/core/functions.php";
 require __DIR__ . "/../vendor/autoload.php";
 // getRequired('vendor/autoload.php');
 
+use Gabela\Core\Exception\GabelaInvalidRequestException;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
@@ -14,11 +15,11 @@ $logger->pushHandler(new StreamHandler('var/CLI.log', Logger::DEBUG));
 try {
     // Check if enough arguments are provided
     if ($argc < 2) {
-        throw new Exception("Not enough arguments. Usage: php bin/create-controller.php ControllerName");
+        throw new GabelaInvalidRequestException("Not enough arguments. Usage: php bin/create-controller.php ControllerName");
     }
 
     if (PHP_SAPI !== 'cli') {
-        throw new Exception("bin/create-controller.php must be run as a CLI application");
+        throw new GabelaInvalidRequestException("bin/create-controller.php must be run as a CLI application");
     }
 
     // Get the controller name from the command line arguments
@@ -111,7 +112,7 @@ try {
         $extensionPath = $controllerSubDirs ? implode('/', array_map('lcfirst', $controllerSubDirs)) : '';
 
         // Adjust the router configuration
-        $newRouter = "\$router->get(\"{\$extensionPath}/new-route\", \"{$lastSubDir}::Action\")->pass('guest');\n\n";
+        $newRouter = "\$router->get(\"{\$extensionPath}/new-route\", \"{$lastSubDir}::Action\");\n\n";
 
         $lastReturnPos = strrpos($routerContent, 'return ');
         $lastReturnBracketPos = strrpos(substr($routerContent, 0, $lastReturnPos), '}');
@@ -125,8 +126,8 @@ try {
         $logger->info("Controller configuration for '$lastSubDir' added to router.php!");
 
     }
-} catch (Exception $e) {
-    printValue("Error: {$e->getMessage()}\n");
+} catch (GabelaInvalidRequestException $e) {
+    printValue("Error: {$e}\n");
     $logger->error("Error: {$e->getMessage()}");
     exit(1);
 }

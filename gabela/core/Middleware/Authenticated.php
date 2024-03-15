@@ -17,7 +17,7 @@ class Authenticated
         $logger->pushHandler(new StreamHandler('var/System.log', Logger::DEBUG));
 
         if (!isset($_SESSION['user_id'])) {
-            $logger->critical('User tried to access an unauthorized page');
+            $logger->critical('[Permission Denied]: User with no access rights tried to access an unauthorized page');
             redirect('/');
             exit();
         }

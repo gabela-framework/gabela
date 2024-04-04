@@ -115,16 +115,16 @@
         },
         {
             "name": "gabela/gabela-users",
-            "version": "1.4.9",
+            "version": "1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gabela-framework/gabela-users.git",
-                "reference": "a7e8bb7803322d72ca529583430e8748ebb10f6e"
+                "reference": "67a671fbb1de70614da2bb31d96fe615736ee83f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gabela-framework/gabela-users/zipball/a7e8bb7803322d72ca529583430e8748ebb10f6e",
-                "reference": "a7e8bb7803322d72ca529583430e8748ebb10f6e",
+                "url": "https://api.github.com/repos/gabela-framework/gabela-users/zipball/67a671fbb1de70614da2bb31d96fe615736ee83f",
+                "reference": "67a671fbb1de70614da2bb31d96fe615736ee83f",
                 "shasum": ""
             },
             "require": {
@@ -155,9 +155,9 @@
             ],
             "support": {
                 "issues": "https://github.com/gabela-framework/gabela-users/issues",
-                "source": "https://github.com/gabela-framework/gabela-users/tree/1.4.9"
+                "source": "https://github.com/gabela-framework/gabela-users/tree/1.5"
             },
-            "time": "2024-03-11T11:43:34+00:00"
+            "time": "2024-04-04T13:05:25+00:00"
         },
         {
             "name": "gabela/tasks",

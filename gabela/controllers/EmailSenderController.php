@@ -71,7 +71,7 @@ class EmailSenderController
             $mail->setFrom($username, 'Gabela Framework');
 
             if ($personData !== null && is_array($personData)) {
-                $mail->addAddress($personData['email_address'], $personData['name']);
+                $mail->addAddress($personData['email'], $personData['name']);
             } else {
                 $mail->addAddress($this->userCollection->getEmail(), $this->userCollection->getName());
             }
@@ -106,6 +106,7 @@ class EmailSenderController
             }
         } catch (Exception $e) {
             $logger->error("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
+            $logger->critical($e);
         }
     }
 

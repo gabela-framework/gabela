@@ -1,4 +1,104 @@
 <?php
+
+// Sorting an array of associative arrays by a specific key
+$users = [
+    ['name' => 'John', 'age' => 30],
+    ['name' => 'Alice', 'age' => 25],
+    ['name' => 'Bob', 'age' => 35]
+];
+
+// Sorting by 'age' using usort()
+usort($users, function($a, $b) {
+    return $a['age'] <=> $b['age'];
+});
+
+print_r($users);
+
+// Sorting by 'name' using uasort()
+uasort($users, function($a, $b) {
+    return strcmp($a['name'], $b['name']);
+});
+
+print_r($users);
+
+// Sorting by keys using uksort()
+$data = ['b' => 3, 'a' => 1, 'c' => 2];
+uksort($data, 'strcmp');
+print_r($data);
+
+
+// Filtering out even numbers
+$numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+$filtered = array_filter($numbers, function($value) {
+    return $value % 2 !== 0;
+});
+print_r($filtered);
+
+// Filtering out empty strings
+$values = ['', 'a', '', 'b', '', 'c'];
+$nonEmptyValues = array_filter($values);
+print_r($nonEmptyValues);
+
+// Doubling each number
+$numbers = [1, 2, 3, 4, 5];
+$doubled = array_map(function($value) {
+    return $value * 2;
+}, $numbers);
+print_r($doubled);
+
+// Converting strings to uppercase
+$names = ['john', 'alice', 'bob'];
+$uppercased = array_map('strtoupper', $names);
+print_r($uppercased);
+
+// Adding prefix to each element in the array
+$fruits = ['apple', 'banana', 'cherry'];
+array_walk($fruits, function(&$value, $key) {
+    $value = 'fruit: ' . $value;
+});
+print_r($fruits);
+
+// Multiplying each number by 2
+$numbers = [1, 2, 3, 4, 5];
+array_walk($numbers, function(&$value, $key) {
+    $value *= 2;
+});
+print_r($numbers);
+
+
+// Event handling with custom event listener
+class EventDispatcher {
+    private $listeners = [];
+
+    public function addListener($eventName, $callback) {
+        $this->listeners[$eventName][] = $callback;
+    }
+
+    public function dispatch($eventName, $data) {
+        if (isset($this->listeners[$eventName])) {
+            foreach ($this->listeners[$eventName] as $callback) {
+                call_user_func($callback, $data);
+            }
+        }
+    }
+}
+
+$dispatcher = new EventDispatcher();
+$dispatcher->addListener('user.created', function($data) {
+    echo "New user created: " . $data['name']."\n";
+});
+
+$dispatcher->addListener('order.created', function($data) {
+    echo "New order created: " . $data['id'];
+});
+
+// Dispatch events
+$dispatcher->dispatch('user.created', ['name' => 'John']);
+$dispatcher->dispatch('order.created', ['id' => 123]);
+
+
+return;
+
 function bubbleSort($arr) {
     $n = count($arr);
     for ($i = 0; $i < $n - 1; $i++) {

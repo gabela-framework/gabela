@@ -4,13 +4,13 @@ namespace Gabela\Controller;
 
 //getRequired(USER_MODEL);
 
-use Throwable;
-use Monolog\Logger;
-use Gabela\Model\User;
-use Gabela\Core\Session;
-use League\Event\EventDispatcher;
-use Monolog\Handler\StreamHandler;
+use Gabela\Core\EventDispatcher;
 use Gabela\Core\Events\ForgetPasswordEvent;
+use Gabela\Core\Events\ForgotPasswordEmailSenderListener;
+use Gabela\Model\User;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Throwable;
 
 class ForgotPasswordSubmitController
 {
@@ -56,11 +56,13 @@ class ForgotPasswordSubmitController
                         $message = $result['message'];
                         $token = $result['token'];
 
+                        $listener = new ForgotPasswordEmailSenderListener(new EmailSenderController());
+                        $this->dispatcher->addListener('forgot_password', [$listener, '__invoke']);
                         $event = new ForgetPasswordEvent($email, $message, $token);
-                        $this->dispatcher->dispatch($event);
+                        $this->dispatcher->dispatch('forgot_password', $event);
 
                         // $this->emailSender->sendForgetPasswordEmail($email, $message, $token); // send the email without the dispatcher
-                        
+
                         return redirect('/login');
                     }
                 } catch (Throwable $e) {

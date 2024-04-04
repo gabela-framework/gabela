@@ -10,9 +10,8 @@
 namespace Gabela\Core\Events;
 
 use Gabela\Controller\EmailSenderController;
-use League\Event\Listener;
 
-class EmailSenderListener implements Listener
+class EmailSenderListener
 {
     protected $emailSender;
 
@@ -32,7 +31,7 @@ class EmailSenderListener implements Listener
      * @param object $event
      * @return void
      */
-    public function __invoke(object $event): void
+    public function __invoke($event): void
     {
         // Access the new user ID from the event
         $userId = $event->getUserId();

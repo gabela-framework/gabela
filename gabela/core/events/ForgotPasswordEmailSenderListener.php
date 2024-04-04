@@ -10,9 +10,8 @@
 namespace Gabela\Core\Events;
 
 use Gabela\Controller\EmailSenderController;
-use League\Event\Listener;
 
-class ForgotPasswordEmailSenderListener implements Listener
+class ForgotPasswordEmailSenderListener
 {
     protected $emailSender;
 
@@ -32,7 +31,7 @@ class ForgotPasswordEmailSenderListener implements Listener
      * @param object $event
      * @return void
      */
-    public function __invoke(object $event): void
+    public function __invoke($event): void
     {
         $email = $event->getEmail();
         $resetToken = $event->getResetToken();

@@ -48,7 +48,7 @@ class ResetPasswordSubmitController
 
                     // Check if the provided email and token are valid
                     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-                    $token = filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING);
+                    $token = filter_input(INPUT_POST, 'token', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
                     if (!empty($email) && !empty($token)) {
 

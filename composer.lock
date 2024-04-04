@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0272442f74bc7c8a34667f96eaabd1f8",
+    "content-hash": "8cd9052e0ae2ff82d6a4901f6a6f5238",
     "packages": [
         {
             "name": "aternus/geonames-client",
@@ -115,16 +115,16 @@
         },
         {
             "name": "gabela/gabela-users",
-            "version": "1.4.9",
+            "version": "1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gabela-framework/gabela-users.git",
-                "reference": "a7e8bb7803322d72ca529583430e8748ebb10f6e"
+                "reference": "67a671fbb1de70614da2bb31d96fe615736ee83f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gabela-framework/gabela-users/zipball/a7e8bb7803322d72ca529583430e8748ebb10f6e",
-                "reference": "a7e8bb7803322d72ca529583430e8748ebb10f6e",
+                "url": "https://api.github.com/repos/gabela-framework/gabela-users/zipball/67a671fbb1de70614da2bb31d96fe615736ee83f",
+                "reference": "67a671fbb1de70614da2bb31d96fe615736ee83f",
                 "shasum": ""
             },
             "require": {
@@ -155,9 +155,9 @@
             ],
             "support": {
                 "issues": "https://github.com/gabela-framework/gabela-users/issues",
-                "source": "https://github.com/gabela-framework/gabela-users/tree/1.4.9"
+                "source": "https://github.com/gabela-framework/gabela-users/tree/1.5"
             },
-            "time": "2024-03-11T11:43:34+00:00"
+            "time": "2024-04-04T13:05:25+00:00"
         },
         {
             "name": "gabela/tasks",
@@ -531,65 +531,6 @@
             "time": "2023-12-03T20:05:35+00:00"
         },
         {
-            "name": "league/event",
-            "version": "3.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/event.git",
-                "reference": "221867a61087ee265ca07bd39aa757879afca820"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/event/zipball/221867a61087ee265ca07bd39aa757879afca820",
-                "reference": "221867a61087ee265ca07bd39aa757879afca820",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.2.0",
-                "psr/event-dispatcher": "^1.0"
-            },
-            "provide": {
-                "psr/event-dispatcher-implementation": "1.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.16",
-                "phpstan/phpstan": "^0.12.45",
-                "phpunit/phpunit": "^8.5"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "League\\Event\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Frank de Jonge",
-                    "email": "info@frenky.net"
-                }
-            ],
-            "description": "Event package",
-            "keywords": [
-                "emitter",
-                "event",
-                "listener"
-            ],
-            "support": {
-                "issues": "https://github.com/thephpleague/event/issues",
-                "source": "https://github.com/thephpleague/event/tree/3.0.2"
-            },
-            "time": "2022-10-29T09:31:25+00:00"
-        },
-        {
             "name": "monolog/monolog",
             "version": "3.5.0",
             "source": {
@@ -824,56 +765,6 @@
                 }
             ],
             "time": "2023-11-25T22:23:28+00:00"
-        },
-        {
-            "name": "psr/event-dispatcher",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/event-dispatcher.git",
-                "reference": "dbefd12671e8a14ec7f180cab83036ed26714bb0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/event-dispatcher/zipball/dbefd12671e8a14ec7f180cab83036ed26714bb0",
-                "reference": "dbefd12671e8a14ec7f180cab83036ed26714bb0",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.2.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\EventDispatcher\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Standard interfaces for event handling.",
-            "keywords": [
-                "events",
-                "psr",
-                "psr-14"
-            ],
-            "support": {
-                "issues": "https://github.com/php-fig/event-dispatcher/issues",
-                "source": "https://github.com/php-fig/event-dispatcher/tree/1.0.0"
-            },
-            "time": "2019-01-08T18:20:26+00:00"
         },
         {
             "name": "psr/http-client",
@@ -1205,5 +1096,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.6.0"
 }

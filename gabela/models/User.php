@@ -183,8 +183,11 @@ class User implements UserInterface
         try {
             // Your registration code here
             if ($stmt->execute()) {
+                $userId = $this->db->insert_id;
+                $this->setUserId($userId);
+                
                 $_SESSION['registration_success'] = 'Heey!!! ' . $this->name . ' you registered successfully. Please Login..';
-                $this->logger->critical("{$this->getName()} Registered successfully!!");
+                $this->logger->info("{$this->getName()} Registered successfully!!");
 
                 return true; // User saved successfully
             } else {

@@ -2,7 +2,7 @@
     "name": "gabela/micro-framework",
     "description": "This the next big thing in the php frameworks community",
     "type": "project",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "authors": [
         {
             "name": "Ntabethemba Ntshoza",
@@ -14,7 +14,6 @@
         "monolog/monolog": "^3.5",
         "aternus/geonames-client": "^2.3",
         "phpmailer/phpmailer": "^6.9",
-        "league/event": "^3.0",
         "gabela/gabela-users": "^1.0",
         "gabela/tasks": "^1.2",
         "gabela/gabela-payfast": "^1.0",

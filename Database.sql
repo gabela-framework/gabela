@@ -1,3 +1,4 @@
+-- Active: 1709556407866@@127.0.0.1@3306@ekomi
 CREATE TABLE users (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,

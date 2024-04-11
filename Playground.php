@@ -1,4 +1,11 @@
 <?php
+$a = '1';
+$b = &$a;
+$b = "2$b";
+echo $a.", ".$b;
+
+$i = 016;
+echo $i / 2;
 
 // Sorting an array of associative arrays by a specific key
 $users = [

@@ -32,14 +32,32 @@ abstract class AbstractController
      */
     protected function renderTemplate($template, $data = [])
     {
-        $templatePath = $this->getTemplate($template);
+        // Check if the template file exists
+        if (!file_exists($template)) {
+            throw new \Exception("Template file '$template' not found");
+        }
 
-        if (file_exists($templatePath)) {
-            extract($data);
-            include $templatePath;
-        } else {
-            // Handle template not found
-            echo "Template not found: $templatePath";
+        // Extract data variables
+        extract($data, EXTR_SKIP);
+
+        // Start output buffering to capture any errors during template execution
+        ob_start();
+
+        try {
+            // Include the template file
+            include ($template);
+        } catch (\Throwable $e) {
+            // Clean the output buffer
+            ob_end_clean();
+
+            // Log the error
+            error_log("Error rendering template '$template': " . $e->getMessage());
+
+            // Print the error to the screen for debugging purposes
+            echo "Error rendering template '$template': " . $e->getMessage();
+
+            // Re-throw the exception to propagate it further
+            throw $e;
         }
     }
 

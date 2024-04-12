@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @var array $data
+ */
+
 use Gabela\Core\Session;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -19,7 +23,7 @@ $geo = new GeoNamesClient('maneza');
 
 <head>
     <meta charset="utf-8">
-    <title>Login / Register - VMP Tasks management</title>
+    <title><?= $data['tittle'] ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Responsive Minimal Bootstrap Theme">
     <meta name="keywords" content="responsive,minimal,bootstrap,theme">
@@ -66,7 +70,8 @@ $geo = new GeoNamesClient('maneza');
                     <div class="row">
                         <div class="span6 info-text">
                             <strong>Phone:</strong> (111) 333 7777 <span
-                                class="separator"></span><strong>Email:</strong> <a href="#"><?php printValue(Session::getCurrentUserEmail()) ?></a>
+                                class="separator"></span><strong>Email:</strong> <a
+                                href="#"><?php printValue(Session::getCurrentUserEmail()) ?></a>
                         </div>
                         <div class="span6 text-right">
                             <div class="social-icons">
@@ -107,10 +112,11 @@ $geo = new GeoNamesClient('maneza');
             <!-- subheader close -->
 
             <div style="padding: 10em 10em; text-align: center;">
-            <h2>Create your 1st controller...</h2>
-                <h4>Use the official Gabela Framework github for documentation <a target="_blank" href="https://github.com/gabela-framework/gabela">Here...</a></h4>
-                 <br />
-                 <br />
+                <h2>Create your 1st controller...</h2>
+                <h4>Use the official Gabela Framework github for documentation <a target="_blank"
+                        href="https://github.com/gabela-framework/gabela">Here...</a></h4>
+                <br />
+                <br />
                 <img class="img-responsive" src="assets/images/logo.png" alt="404" style="display: inline-block;">
             </div>
 

@@ -8,8 +8,8 @@ class IndexController extends AbstractController
 {
     public function Index()
     {
-        $this->getTemplate(HOME_PAGE);
-    }
+        $data = ["tittle" => "Official Gabela framework home"];
 
-    
+        $this->renderTemplate(HOME_PAGE, $data);
+    }
 }

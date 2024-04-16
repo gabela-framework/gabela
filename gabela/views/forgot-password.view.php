@@ -3,7 +3,9 @@
  * @package   Task Management
  * @author    Ntabethemba Ntshoza
  * @date      11-10-2023
+ * 
  * @copyright Copyright © 2023 VMP By Maneza
+ * @var array $data
  */
 
 ?>
@@ -14,7 +16,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password</title>
+    <title><?= $data['tittle'] ?></title>
     <!-- Include your CSS and Bootstrap links here -->
 
     <!-- Include Bootstrap CSS -->

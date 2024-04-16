@@ -8,6 +8,7 @@ class ForgotPasswordController extends AbstractController
 {
     public function forgot()
     {
-        $this->getTemplate(FORGOT_PASSWORD_PAGE);
+        $data = ['tittle' => 'Forgot password page'];
+        $this->renderTemplate(FORGOT_PASSWORD_PAGE, $data);
     }
 }

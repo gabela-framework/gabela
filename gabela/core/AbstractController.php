@@ -2,6 +2,8 @@
 
 namespace Gabela\Core;
 
+use Exception;
+
 /**
  * Abstract base class for controllers.
  */
@@ -27,14 +29,18 @@ abstract class AbstractController
     /**
      * Render a template.
      *
-     * @param string $template
-     * @param array $data
+     * @param string $template template path where the view is kept
+     * @param array $data additional data to use inside the template
+     * 
+     * @throws Exception
+     * 
+     * @return string page template as a path string
      */
     protected function renderTemplate($template, $data = [])
     {
         // Check if the template file exists
         if (!file_exists($template)) {
-            throw new \Exception("Template file '$template' not found");
+            throw new Exception("Template file '$template' not found");
         }
 
         // Extract data variables
@@ -45,8 +51,8 @@ abstract class AbstractController
 
         try {
             // Include the template file
-            include ($template);
-        } catch (\Throwable $e) {
+            return include ($template);
+        } catch (Exception $e) {
             // Clean the output buffer
             ob_end_clean();
 

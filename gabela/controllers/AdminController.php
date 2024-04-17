@@ -9,7 +9,8 @@ class AdminController extends AbstractController
 {
     public function Action()
     {
-        $this->getTemplate('gabela/views/admin.view.php');
+        $data = ['tittle'=> 'Admin dashboad'];
+        $this->renderTemplate('gabela/views/admin.view.php', $data);
     }
 }
 

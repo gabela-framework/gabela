@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @var array $data
+ */
+
 getIncluded(TASK_MODEL);
 
 use Gabela\Core\Session;
@@ -13,7 +17,7 @@ use Gabela\Core\ClassManager;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title><?= $data['tittle'] ?></title>
 
     <link rel="stylesheet" href="assets/css/main.css" type="text/css" id="main-css">
     <link rel="stylesheet" href="assets/includes/styles.css" type="text/css">

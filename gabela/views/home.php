@@ -4,8 +4,8 @@
  * @var array $data
  */
 
-use Gabela\Core\Session;
-use Monolog\Logger;
+
+ use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use GeoNames\Client as GeoNamesClient;
 
@@ -71,7 +71,7 @@ $geo = new GeoNamesClient('maneza');
                         <div class="span6 info-text">
                             <strong>Phone:</strong> (111) 333 7777 <span
                                 class="separator"></span><strong>Email:</strong> <a
-                                href="#"><?php printValue(Session::getCurrentUserEmail()) ?></a>
+                                href="#"><?php printValue($data['userEmail']) ?></a>
                         </div>
                         <div class="span6 text-right">
                             <div class="social-icons">

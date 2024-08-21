@@ -528,6 +528,35 @@ class User implements UserInterface
     }
 
 
+    /**
+     * Get a user by ID
+     *
+     * @param string|int $userId
+     * @return mixed
+     */
+    public function getUserByName($userName)
+    {
+        // Prepare the SQL statement to retrieve user data by user_id
+        $sql = "SELECT * FROM users WHERE name like ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $userName);
+
+        if ($stmt->execute()) {
+            // Execute the query
+            $result = $stmt->get_result();
+
+            // Check if a user with the provided user_id exists
+            if ($result->num_rows === 1) {
+                // Fetch user data
+                $userData = $result->fetch_assoc();
+                return $userData;
+            }
+        }
+
+        return null; // User not found or query failed
+    }
+
+
             /**
      * Get a user by Email Address
      *
@@ -684,6 +713,6 @@ class User implements UserInterface
             }
         }
 
-        return null;
+        return [];
     }
 }

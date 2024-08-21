@@ -23,7 +23,7 @@
 
             <!-- user page  -->
             <?php if (isset($_SESSION['user_id'])): ?>
-                <li><a href="<?= BASE_URL . 'users' ?>">View Users</a>
+                <li><a href="<?= BASE_URL . 'users' ?>">Users</a>
                 </li>
             <?php elseif (!isset($_SESSION['user_id'])): ?>
 

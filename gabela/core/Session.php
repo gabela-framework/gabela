@@ -54,6 +54,11 @@ class Session
         return $currentUser;
     }
 
+    /**
+     * Flush all the session assigned
+     *
+     * @return void
+     */
     public static function flush()
     {
         $_SESSION = [];

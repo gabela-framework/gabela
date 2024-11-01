@@ -16,7 +16,8 @@
         "gabela/gabela-users": "^1.0",
         "gabela/tasks": "^1.2",
         "gabela/gabela-payfast": "^1.0",
-        "payfast/payfast-php-sdk": "^1.1"
+        "payfast/payfast-php-sdk": "^1.1",
+        "vlucas/phpdotenv": "^5.6"
     },
     "autoload": {
         "psr-4": {

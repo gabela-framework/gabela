@@ -3,21 +3,6 @@
 use Gabela\Core\Response;
 
 /**
- * Dump and Die function for debugging
- *
- * @param mixed $value
- * @return void
- */
-function dd($value)
-{
-    printValue('<pre>');
-    var_dump($value);
-    printValue('</pre>');
-
-    die;
-}
-
-/**
  * include function with the limited project roor path.
  *
  * @param string $path
@@ -135,3 +120,68 @@ function abort($code = Response::NOT_FOUND)
 
     die();
 }
+
+
+if (!function_exists('format_array')) {
+    /**format array for pretty print
+    *
+    * @param $data
+    * @param $level
+    * @return string
+    */
+    function format_array($data, $level = 0): string
+    {
+    $spaces = str_repeat(' ', $level);
+    $output = "";
+    if (is_array($data) OR is_object($data)) {
+    $output = "[\n";
+    foreach ($data as $key => $value) {
+    $output .= $spaces . ' ' . "<span style='color:#888888;'>[" . htmlspecialchars($key) . "]</span> => ";
+    if (is_array($value)) {
+    $output .= format_array($value, $level + 1);
+    } elseif (is_string($value)) {
+    $output .= "<span style='color:green;'>'" . htmlspecialchars($value) . "'</span>";
+    } elseif (is_int($value) || is_float($value)) {
+    $output .= "<span style='color:blue;'>" . htmlspecialchars($value) . "</span>";
+    } elseif (is_bool($value)) {
+    $output .= "<span style='color:purple;'>" . ($value ? 'true' : 'false') . "</span>";
+    } elseif (is_null($value)) {
+    $output .= "<span style='color:red;'>null</span>";
+    } else {
+    $output .= "<span style='color:orange;'>" . htmlspecialchars(var_export($value, true)) . "</span>";
+    }
+    $output .= ",\n";
+    }
+    } else{
+    $output .= "[";
+    $output .= $data;
+    }
+    $output .= $spaces . "]";
+    return $output;
+    }
+    }
+    /**
+    * Dump a nice array|string|int
+    *
+    * @param $data
+    * @return void
+    */
+    function print_array($data) {
+    // Apply the formatting and output
+    echo '<pre style="background-color:#f4f4f4; padding:10px; border:1px solid #ddd; border-radius:5px; font-family:monospace;">';
+    echo format_array($data);
+    echo '</pre>';
+    }
+    /**
+    * Dump Die
+    *
+    * @param mixed|array $data variable to dump data
+    * @return void
+    */
+    function dd($data) {
+    // Apply the formatting and output
+    echo '<pre style="background-color:#f4f4f4; padding:10px; border:1px solid #ddd; border-radius:5px; font-family:monospace;">';
+    echo format_array($data);
+    echo '</pre>';
+    die;
+    }

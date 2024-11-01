@@ -17,7 +17,6 @@ $router->get("{$extensionPath}/reset-password", "ResetPasswordController::reset"
 $router->post("{$extensionPath}/reset-password-submit", "ResetPasswordSubmitController::submit")->pass('guest');
 
 $router->get("{$extensionPath}/tasks", "TasksController::tasks")->pass('auth');
-$router->get("{$extensionPath}/tasks-create", "TasksController::create")->pass('auth');
 $router->post("{$extensionPath}/tasks-create-submit", "TasksCreateSubmitController::submit")->pass('auth');
 $router->get("{$extensionPath}/task-edit", "TasksController::edit")->pass('auth');
 $router->post("{$extensionPath}/task-edit-submit", "TasksSubmitController::submit")->pass('auth');

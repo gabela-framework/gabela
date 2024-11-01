@@ -9,10 +9,11 @@
 
 namespace Gabela\Model;
 
-use mysqli;
+use PDO;
 use Exception;
-use Gabela\Core\Database;
 use Monolog\Logger;
+use Gabela\Core\Model;
+use Gabela\Core\Database;
 use Gabela\Model\UserInterface;
 use Monolog\Handler\StreamHandler;
 
@@ -20,18 +21,20 @@ use Monolog\Handler\StreamHandler;
  * Users class to get users from the database
  * @package Model
  */
-class User implements UserInterface
+class User extends Model 
 {
     private $name;
     private $city;
     private $email;
     private $password;
     private $id;
-    private $db;
+    protected $db;
     private $role;
     private $logger;
+    protected $table = 'users';
+    protected $primaryKey = 'user_id';
 
-    public function __construct(mysqli $db = null)
+    public function __construct(PDO $db = null)
     {
         $this->db = Database::connect();
         $this->logger = new Logger('users');
@@ -125,32 +128,23 @@ class User implements UserInterface
      */
     public function getWeatherCity()
     {
-        // Prepare the SQL statement to fetch all users
-        $user_id = $this->getWeatherUserId(); // Get the user's ID for the currently logged-in user;
-        $sql = "SELECT city FROM users WHERE id = $user_id";
-
-        // Execute the query
-        $result = $this->db->query($sql);
-
-        // Check if the query was successful
-        if ($result) {
-            $theCity = [];
-
-            // Fetch user data and create User objects
-            while ($row = $result->fetch_assoc()) {
-                $theCity = isset($row['city']) ? $row['city'] : "Cape town";
-            }
-
-            if (!is_null($theCity)) {
-                // var_dump($theCity);
-
-                return $theCity;
-            } else {
-
-                return false;
-            }
+        // Get the user's ID for the currently logged-in user
+        $user_id = $this->getWeatherUserId(); 
+    
+        // Use the findOne method from the Model class to find the city for the given user_id
+        $condition = ['user_id' => $user_id];
+        $user = $this->findOne($condition);
+    
+        // Check if the user was found
+        if ($user && isset($user['city'])) {
+            // Return the city if it exists
+            return $user['city'];
+        } else {
+            // If no city is found, return a default city (Cape Town)
+            return "Cape Town";
         }
     }
+    
 
     // Getter method for name
     public function getWeatherUserId()
@@ -167,41 +161,43 @@ class User implements UserInterface
     /**
      * Save New Users
      *
-     * @return bool
+     * @return mixed
      */
     public function save()
     {
-        // Hash the password before saving
         $hashedPassword = password_hash($this->password, PASSWORD_DEFAULT);
 
-        // Prepare the SQL statement
-        $sql = "INSERT INTO users (name, city, email, password) VALUES (?, ?, ?, ?)";
-        // Bind parameters and execute the query
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ssss", $this->name, $this->city, $this->email, $hashedPassword);
+        // Prepare data for insertion
+        $data = [
+            'name' => $this->name,
+            'city' => $this->city,
+            'email' => $this->email,
+            'password' => $hashedPassword,
+        ];
 
-        try {
-            // Your registration code here
-            if ($stmt->execute()) {
-                $userId = $this->db->insert_id;
-                $this->setUserId($userId);
-                
-                $_SESSION['registration_success'] = 'Heey!!! ' . $this->name . ' you registered successfully. Please Login..';
-                $this->logger->info("{$this->getName()} Registered successfully!!");
-
-                return true; // User saved successfully
+        if ($this->id) {
+            // Update existing user
+            return $this->update($data, $this->id);
+        } else {
+            // Insert new user
+            if ($this->validatePassword($data['password'])) {
+                return $this->insert($data);
             } else {
-                $_SESSION['registration_error'] = 'An error occurred while registering. This email address is already in use.';
-                $this->logger->critical(var_export($_SESSION['registration_error'], true));
-
-                return false; // User could not be saved
+                $_SESSION['registration_error'] = 'Error registering, verify your detials and try again';
             }
-        } catch (mysqli_sql_exception $e) {
-            $_SESSION['registration_error'] = 'An error occurred while registering. This email address is already in use.';
-            $this->logger->error('An exception occurred', ['exception' => $e]);
         }
     }
 
+    public function getUserById($userId)
+    {
+
+        $user = $this->findById($userId);
+        if ($user) {
+            return $user;
+        }
+
+        return null; // User not found or query failed
+    }
     /**
      * Login funtion
      *
@@ -211,41 +207,25 @@ class User implements UserInterface
      */
     public function login($email, $password)
     {
-
         try {
-            // Prepare the SQL statement to retrieve user data based on the provided email
-            $sql = "SELECT id, name, email, password FROM users WHERE email = ?";
-            $stmt = $this->db->prepare($sql);
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
+            // Fetch user by email
+            $user = $this->findByEmail($email);
 
-            if ($stmt->error) {
-                $errorMessage = "Database query error: " . $stmt->error;
-                $this->logger->error($errorMessage);
-                die($errorMessage);
-            }
-
-            $result = $stmt->get_result();
-
-            // Check if a user with the provided email exists
-            if ($result->num_rows === 0) {
+            // Check if user exists
+            if (!$user) {
                 $_SESSION['login_error'] = 'Aaaahh!! Check your email/password...';
                 return false; // User not found
             }
-
-            // Fetch the user data
-            $user = $result->fetch_assoc();
 
             // Verify the provided password against the stored hash
             if (password_verify($password, $user['password'])) {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['user_name'] = $user['name'];
-                $_SESSION['login_success'] = 'Hey ' . $user['name'] . ' you are logged in successfully!';
+                $_SESSION['login_success'] = 'Hey ' . $user['name'] . ', you are logged in successfully!';
 
                 return true;
             } else {
                 $_SESSION['login_error'] = 'Aaaahh!! Check your email/password...';
-
                 return false; // Incorrect password
             }
         } catch (Exception $e) {
@@ -258,12 +238,32 @@ class User implements UserInterface
     }
 
     /**
+     * Summary of getUsersFromDatabase
+     * @return array|bool
+     */
+    public function getUsersFromDatabase()
+    {
+        $result = $this->findAll();
+
+        if ($result) {
+            $userNames = [];
+
+            foreach ($result as $row) {
+                $userNames[] = $row;
+            }
+
+            return $userNames;
+        } else {
+            return false; // Query failed
+        }
+    }
+    /**
      * Validate Password
      * @param string $password
      * 
      * @return bool
      */
-    function validatePassword($password)
+    public function validatePassword($password)
     {
         // Check password length
         if (strlen($password) < 8) {
@@ -293,45 +293,52 @@ class User implements UserInterface
      * Forgot password function
      *
      * @param string $email
-     * @return bool
+     * @return mixed
      */
+
     public function forgotPassword($email)
     {
-        // Check if the email exists in the database
-        if ($this->emailExists($email)) {
-            // Generate a reset token and set it in the database
+        try {
+            // Check if the email exists by fetching the user
+            $user = $this->findByEmail($email);
+
+            if (!$user) {
+                // Email does not exist, return an error
+                $_SESSION['reset_error'] = 'The email address does not exist. Verify and try again.';
+                return redirect('/forgot-password');
+            }
+
+            // Generate reset token and expiration time
             $resetToken = bin2hex(random_bytes(16)); // Generate a random token
-            $resetExpiration = date('Y-m-d H:i:s', strtotime('+1 hour')); // Set expiration time
+            $resetExpiration = date('Y-m-d H:i:s', strtotime('+1 hour')); // Expiration time set to 1 hour
 
             // Update the user's reset_token and reset_expiration in the database
-            $sql = "UPDATE users SET reset_token = ?, reset_expiration = ? WHERE email = ?";
-            // $stmt = $this->conn->prepare($sql);
-            $stmt = $this->db->prepare($sql);
-            $stmt->bind_param('sss', $resetToken, $resetExpiration, $email);
+            $updateData = [
+                'reset_token' => $resetToken,
+                'reset_expiration' => $resetExpiration
+            ];
 
-            try {
-                if ($stmt->execute()) {
-                    // Send a reset email to the user with a link to reset their password
-                    // $resetLink = "{$this->getSiteUrl('/reset-password')}?email=" . $email . "&token=" . $resetToken;
-                    $resetLink = "{$this->getSiteUrl('/reset-password')}?email=" . urlencode($email) . "&token=" . urlencode($resetToken);
-                    $message = "To reset your password, click on the following link:\n" . "<a href='{$resetLink}'>Reset your password now</a>";
+            // Use the updateRow method to update the user based on the email
+            $this->updateRow($updateData, ['id' => $user['id']]);
 
-                    $_SESSION['reset_password'] = $message;
-                    $_SESSION['email'] = $email;
-                    $_SESSION['token'] = $resetToken;
-                    $_SESSION['updated_password'] = "The reset password link is been sent to your email check the email and reset your password!";
-                    // Return the message and token
-                    return ['message' => $message, 'token' => $resetToken];
-                }
-            } catch (Exception $e) {
-                $_SESSION['registration_error'] = 'An error occurred while registering. This email address is already in use.';
-                $this->logger->error('An exception occurred', ['exception' => $e]);
-            }
+            // Generate the reset link
+            $resetLink = "{$this->getSiteUrl('/reset-password')}?email=" . urlencode($email) . "&token=" . urlencode($resetToken);
+            $message = "To reset your password, click on the following link:\n<a href='{$resetLink}'>Reset your password now</a>";
+
+            // Set session variables and return the message
+            $_SESSION['reset_password'] = $message;
+            $_SESSION['email'] = $email;
+            $_SESSION['token'] = $resetToken;
+            $_SESSION['updated_password'] = "The reset password link has been sent to your email. Please check your email and reset your password!";
+
+            // Return the reset message and token
+            return ['message' => $message, 'token' => $resetToken];
+        } catch (Exception $e) {
+            // Handle any exceptions during the process
+            $_SESSION['registration_error'] = 'An error occurred during the password reset process.';
+            $this->logger->error('An exception occurred while resetting the password', ['exception' => $e]);
+            return false;
         }
-
-        printValue("The email address does not exit verify and try again");
-
-        return redirect('/forgot-password');
     }
 
     /**
@@ -357,28 +364,26 @@ class User implements UserInterface
      * Check if the email already exist in the database
      *
      * @param string $email
-     * @return bool
+     * @return mixed
      */
     private function emailExists($email)
     {
-        // Prepare the SQL statement to fetch all users
-        $sql = "SELECT * FROM users";
-
-        // Execute the query
-        $result = $this->db->query($sql);
-
+        // Define the condition to check for the email
+        $condition = ['email' => $email];
+    
+        // Use the findOne method from the Model class to check if the email exists
+        $result = $this->findOne($condition);
+    
+        // Check if a result is found
         if ($result) {
-            while ($row = $result->fetch_assoc()) {
-                if ($email == $row['email']) {
-                    return true;
-                }
-            }
-
-            $_SESSION['wrong_email'] = "{$email} does not exist, please verify and try again...";
-            // The loop has finished checking all users, and the email doesn't exist
-            return false;
+            return true;
         }
+    
+        // If no result is found, set the session message and return false
+        $_SESSION['wrong_email'] = "{$email} does not exist, please verify and try again...";
+        return false;
     }
+    
 
     /**
      * Check if password is valid for pass reset
@@ -389,22 +394,21 @@ class User implements UserInterface
      */
     public function isValidPasswordResetRequest($email, $token)
     {
-        // Prepare a SQL statement to check if the email and token match a valid reset request.
-        $sql = "SELECT email FROM users WHERE email = ? AND reset_token = ? AND reset_expiration > NOW()";
-
-        // Use prepared statements to prevent SQL injection.
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ss", $email, $token);
-        $stmt->execute();
-        $stmt->store_result();
-
-        // If a row is found, the request is valid.
-        $isValid = ($stmt->num_rows === 1);
-
-        $stmt->close();
-
-        return $isValid;
+        // Define the condition to check the valid reset request
+        $condition = [
+            'email' => $email,
+            'reset_token' => $token,
+            // Add a condition for reset_expiration to be greater than the current time
+            'reset_expiration >' => date('Y-m-d H:i:s'),
+        ];
+    
+        // Use the Model's findOne method to check for a valid reset request
+        $result = $this->findOne($condition);
+    
+        // Return true if a matching record is found, otherwise false
+        return !empty($result);
     }
+    
 
     /**
      * Update Password function
@@ -415,25 +419,26 @@ class User implements UserInterface
      */
     public function updatePassword($email, $newPassword)
     {
-        // Hash the new password (you should use a secure hashing method).
         $hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
 
-        // Prepare an SQL statement to update the user's password.
-        $sql = "UPDATE users SET password = ? WHERE email = ?";
+        $data = [
+            'password' => $hashedPassword,
+        ];
 
-        // Use prepared statements to prevent SQL injection.
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ss", $hashedPassword, $email);
-        $result = $stmt->execute();
+        $condition = [
+            'email' => $email,
+        ];
+
+        // Use the Model's update method to perform the update
+        $result = $this->update($data, $condition);
 
         if ($result) {
             $_SESSION['updated_password'] = "Password reset was successful! | Please Login!";
-            $stmt->close();
         }
 
-        // Return true if the update was successful, false otherwise.
         return $result;
     }
+
 
     /**
      * Get All users
@@ -455,7 +460,11 @@ class User implements UserInterface
             $databaseInstance = Database::connect();
 
             // Fetch user data and create User objects
-            while ($row = $result->fetch_assoc()) {
+            // $stmt->bindParam(':name', $userName, PDO::PARAM_STR);
+            $stmt = $db->prepare($sql);
+            // $userData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $user = new User($databaseInstance);
                 $user->setUserId($row['id']);
                 $user->setName($row['name']);
@@ -469,35 +478,10 @@ class User implements UserInterface
 
             return $users;
         } else {
-            return false; // Query failed
+            return []; // Query failed
         }
     }
 
-    /**
-     * Get usernames from Database 
-     *
-     * @return 
-     */
-    public function getUsersFromDatabase()
-    {
-        // Prepare the SQL statement to fetch all users
-        $sql = "SELECT id, name FROM users";
-
-        // Execute the query
-        $result = $this->db->query($sql);
-
-        if ($result) {
-            $userNames = [];
-
-            while ($row = $result->fetch_assoc()) {
-                $userNames[] = $row;
-            }
-
-            return $userNames;
-        } else {
-            return false; // Query failed
-        }
-    }
 
     /**
      * Get a user by ID
@@ -505,131 +489,40 @@ class User implements UserInterface
      * @param string|int $userId
      * @return mixed
      */
-    public function getUserById($userId)
+    public function getUserByName($userName)
     {
-        // Prepare the SQL statement to retrieve user data by user_id
-        $sql = "SELECT * FROM users WHERE id = ?";
+        // Prepare the SQL statement to retrieve user data by name
+        $sql = "SELECT * FROM users WHERE name LIKE :name";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $userId);
+
+        // Bind the parameter and execute the statement
+        $stmt->bindParam(':name', $userName, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
-            // Execute the query
-            $result = $stmt->get_result();
+            // Fetch the user data
+            $userData = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Check if a user with the provided user_id exists
-            if ($result->num_rows === 1) {
-                // Fetch user data
-                $userData = $result->fetch_assoc();
+            // Check if a user with the provided name exists
+            if ($userData) {
                 return $userData;
             }
         }
 
         return null; // User not found or query failed
-    }
-
-
-            /**
-     * Get a user by Email Address
-     *
-     * @param string $email
-     * @return mixed
-     */
-    public function getUserByEmail($email)
-    {
-        // Prepare the SQL statement to retrieve user data by user_id
-        $sql = "SELECT * FROM users WHERE email = ?";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $email);
-
-        if ($stmt->execute()) {
-            // Execute the query
-            $result = $stmt->get_result();
-
-            // Check if a user with the provided user_id exists
-            if ($result->num_rows === 1) {
-                // Fetch user data
-                $userData = $result->fetch_assoc();
-                return $userData;
-            }
-        }
-
-        return null; // User not found or query failed
-    }
-    
-    /**
-     * Function to update an existing user in the database
-     *
-     * @return bool
-     */
-    public function update()
-    {
-        // Prepare the SQL statement
-        $sql = "UPDATE users 
-                SET name = ?, city = ?, role = ?
-                WHERE id = ?";
-
-        // Bind parameters and execute the query
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param(
-            "sssi",  // "ssi" indicates that you are binding two strings and an integer
-            $this->name,
-            $this->city,
-            $this->role,
-            $this->id // Add the binding for the 'id' parameter
-        );
-
-        if ($stmt->execute()) {
-            $_SESSION['user_updated'] = "User: {$this->name} updated successfully";
-
-            return true; // user updated successfully
-        } else {
-            return false; // user could not be updated
-        }
-    }
-
-
-    /**
-     * Delete users
-     *
-     * @return bool
-     */
-    public function delete($userId)
-    {
-        // Delete associated tasks first
-        $this->deleteUserTasks($userId);
-
-        // Prepare the SQL statement
-        $sql = "DELETE FROM users WHERE id = ?";
-
-        // Bind parameters and execute the query
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $userId);
-
-        if ($stmt->execute()) {
-            $_SESSION['user_deleted'] = "User: {$userId} deleted successfully";
-            return true; // user deleted successfully
-        } else {
-            return false; // user could not be deleted
-        }
     }
 
     /**
      * Delete tasks associated with the user before deleteing the user
      *
      * @param [type] $userId
-     * @return void
+     * @return bool
      */
     private function deleteUserTasks($userId)
     {
-        // Prepare the SQL statement
-        $sql = "DELETE FROM tasks WHERE user_id = ?";
+        $taskModel = new self();
+        $condition = ['user_id' => $userId];
 
-        // Bind parameters and execute the query
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("i", $userId);
-
-        // Execute the delete query for associated tasks
-        $stmt->execute();
+        return $taskModel->delete($condition);
     }
 
     /**
@@ -662,28 +555,20 @@ class User implements UserInterface
      */
     public static function getCurrentUser()
     {
+        // Check if the user is authenticated
         if (self::isAuthenticated()) {
-            $db = Database::connect();
-            // Fetch user details from the database based on the user_id stored in the session
+            // Get the user ID from the session
             $userId = $_SESSION['user_id'];
+            $userModel = new self();
 
-            $sql = "SELECT * FROM users WHERE id = ?";
-            $stmt = $db->prepare($sql);
-            $stmt->bind_param("i", $userId);
+            $userData = $userModel->findById($userId);
 
-            if ($stmt->execute()) {
-                // Execute the query
-                $result = $stmt->get_result();
-
-                // Check if a user with the provided user_id exists
-                if ($result->num_rows === 1) {
-                    // Fetch user data
-                    $userData = $result->fetch_assoc();
-                    return $userData;
-                }
+            // If the user data is found, return it
+            if (!empty($userData)) {
+                return $userData;
             }
         }
 
-        return null;
+        return [];
     }
 }

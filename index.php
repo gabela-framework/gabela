@@ -11,6 +11,9 @@ const BASE_PATH = __DIR__;
 
 require BASE_PATH . '/gabela/bootstrap.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 // Include the updated router
 // $router = include 'router.php';
 $router = getIncluded('/router.php');
@@ -33,6 +36,4 @@ try {
     $logger->critical('Cannot get the targeted controller check the classes and try again', ['exception' => $e]);
     echo('There seem to be issues with the routing check your files and try again');
     throw new \Exception($e);
-
-     $router->previousUrl();
 }

@@ -261,6 +261,14 @@ abstract class AbstractController
     }
 
 
+    /**
+     * Render a link with attributes
+     * 
+     * @param string $url
+     * @param string $label
+     * @param array $attributes
+     * @return string
+     */
     protected function renderLink(string $url, string $label, array $attributes = []): string
     {
         $attr = $this->renderAttributes($attributes);

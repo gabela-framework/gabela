@@ -10,9 +10,7 @@ class Session
 
         if (isset($_SESSION['user_id'])) {
             $userID = $_SESSION['user_id'];
-        } else {
-            $userID = "You not logged in";
-        }
+        } 
 
         return $userID;
     }
@@ -41,6 +39,10 @@ class Session
         }
 
         return $userEmail;
+    }
+
+    public static function isLoggedIn(){
+        return self::getCurrentUserId();
     }
 
     public static function getCurrentUser()

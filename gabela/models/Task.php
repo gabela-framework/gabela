@@ -9,14 +9,15 @@
 
 namespace Gabela\Model;
 
-use mysqli;
-use Gabela\Core\Database;
+use PDO;
 use Monolog\Logger;
-use Gabela\Model\TaskInterface;
+use Gabela\Core\Model;
+use Gabela\Core\Database;
 use InvalidArgumentException;
+use Gabela\Model\TaskInterface;
 use Monolog\Handler\StreamHandler;
 
-class Task implements TaskInterface
+class Task extends Model
 {
     private $id;
     private $title;
@@ -26,10 +27,12 @@ class Task implements TaskInterface
     private $completed;
     private $assign_to;
 
-    private $db;
+    protected $db;
     private $logger;
+    protected $table = 'tasks';
+    protected $primaryKey = 'task_id';
 
-    public function __construct(mysqli $db = null) {
+    public function __construct(PDO $db = null) {
         $this->db = Database::connect();
         $this->logger = new Logger('task-model');
         $this->logger->pushHandler(new StreamHandler('var/System.log', Logger::DEBUG));
@@ -135,36 +138,38 @@ class Task implements TaskInterface
     /**
      * Save New Task
      *
-     * @return bool
+     * @return mixed
      */
     public function save()
     {
-        // Prepare the SQL statement
-        $sql = "INSERT INTO tasks (title, description, assign_to, due_date, user_id, completed) 
-        VALUES (?, ?, ?, ?, ?, ?)";
-
         // You should adjust this logic based on your actual application flow.
-        $userId = null; // Initialize user ID as null
+        $userId = null;
 
         if (isset($_POST["id"])) {
-            $userId = $_POST["id"];
+            $userId = $_POST["user_id"];
         }
 
         if (isset($_SESSION['user_id'])) {
             $userId = $_SESSION['user_id'];
         }
 
-        // Bind parameters and execute the query
-        $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ssssii", $this->title, $this->description, $this->assign_to, $this->dueDate, $userId, $this->completed);
+        $data = [
+            'title' => $this->title,
+            'description' => $this->description,
+            'user_id' => $userId,
+            'assign_to' => $this->assign_to,
+            'completed' => $this->completed,
+            'due_date' => $this->dueDate,
+            'status_id' => 1,
+        ];
 
-        if ($stmt->execute()) {
+        if ($this->id) {
 
             $_SESSION['task_saved'] = "Task: ( {$this->title} ) Saved successfully";
 
-            return true; // 
+            return $this->update($data, $this->id);
         } else {
-            return false; // Task could not be saved
+            return $this->insert($data);
         }
     }
 
@@ -175,30 +180,27 @@ class Task implements TaskInterface
      */
     public static function getAllTasks()
     {
-        $db = Database::connect();
         
-        // Perform a query to fetch tasks from the database
-        $sql = "SELECT * FROM tasks";
-        $result = $db->query($sql);
+        $tasks = (new self)->findAll();
 
-        $tasks = [];
+        $taskList = [];
 
-        if ($result) {
-            while ($row = $result->fetch_assoc()) {
-                $task = new Task();
-                // $user = new User();
-                $task->setId($row['id']);
+        if (!empty($tasks)) {
+            // Loop through the tasks and create Task objects for each record
+            foreach ($tasks as $row) {
+                $task = new self();  // Assuming this refers to the Task model itself
+                $task->setId($row['task_id']);
                 $task->setTitle($row['title']);
                 $task->setDescription($row['description']);
                 $task->setDueDate($row['due_date']);
                 $task->setAssignedTo($row['assign_to']);
                 $task->setUserId($row['user_id']);
                 $task->setCompleted($row['completed']);
-                $tasks[] = $task;
+                $taskList[] = $task;
             }
         }
 
-        return $tasks;
+        return $taskList;
     }
 
     /**
@@ -206,7 +208,7 @@ class Task implements TaskInterface
      *
      * @return void
      */
-    public function update()
+    public function Oldupdate()
     {
         // Prepare the SQL statement
         $sql = "UPDATE tasks 

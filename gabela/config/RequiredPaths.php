@@ -24,3 +24,6 @@ const TASKS_CONTROLLER_CONFI = "vendor/gabela/tasks/helper/TasksControllerPaths.
 const PAGE_HEAD = "gabela/views/partials/head.php";
 const USER_LOGIN_PAGE = "vendor/gabela/gabela-users/src/views/login.php";
 const ADMIN_SETTINGS = "gabela/views/admin.settings.view.php";
+const ROLE_ADMIN = 1;
+const ROLE_USER = 2;
+const ROLE_MANAGER = 3; 

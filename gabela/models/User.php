@@ -535,7 +535,7 @@ class User extends Model
         $user = self::getCurrentUser();
 
         // Check if the user exists and has the 'admin' role
-        return $user && $user['role'] === 'admin';
+        return $user && $user['role_id'] === ROLE_ADMIN;
     }
 
     /**

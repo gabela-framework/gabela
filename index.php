@@ -11,11 +11,8 @@ const BASE_PATH = __DIR__;
 
 require BASE_PATH . '/gabela/bootstrap.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
 
 // Include the updated router
-// $router = include 'router.php';
 $router = getIncluded('/router.php');
 // Copy the current request URI to another variable
 $requestUri = $_SERVER['REQUEST_URI'];

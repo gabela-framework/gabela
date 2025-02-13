@@ -12,17 +12,11 @@ class Database
     public static function connect()
     {
         if (!self::$connection) {
-            $config = getIncluded(WEB_CONFIGS);
-
-            $host = $config['host'];
-            $username = $config['username'];
-            $password = $config['password'];
-            $database = $config['database'];
-
-            // $host =  getenv('DB_HOST'); //$config['host'];
-            // $username = getenv('DB_USERNAME');//$config['username'];
-            // $password = getenv('DB_PASSWORD');//$config['password'];
-            // $database = getenv('DB_DATABASE'); //$config['database'];
+            
+            $host = $_ENV['DB_HOST'];
+            $username = $_ENV['DB_USERNAME'];
+            $password = $_ENV['DB_PASSWORD'];
+            $database = $_ENV['DB_DATABASE']; 
 
             try {
                 $dsn = "mysql:host=$host;dbname=$database;charset=utf8mb4";

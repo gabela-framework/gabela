@@ -11,8 +11,8 @@ const BASE_PATH = __DIR__;
 
 require BASE_PATH . '/gabela/bootstrap.php';
 
+
 // Include the updated router
-// $router = include 'router.php';
 $router = getIncluded('/router.php');
 // Copy the current request URI to another variable
 $requestUri = $_SERVER['REQUEST_URI'];
@@ -33,6 +33,4 @@ try {
     $logger->critical('Cannot get the targeted controller check the classes and try again', ['exception' => $e]);
     echo('There seem to be issues with the routing check your files and try again');
     throw new \Exception($e);
-
-     $router->previousUrl();
 }

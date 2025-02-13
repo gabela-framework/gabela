@@ -4,3 +4,4 @@ var/
 var
 gabela/config/config.php
 .htaccess
+.env

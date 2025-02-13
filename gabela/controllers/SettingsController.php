@@ -4,12 +4,12 @@ namespace Gabela\Controller;
 
 use Gabela\Core\Middleware\Middleware;
 
-    class SettingsController extends \Gabela\Core\AbstractController
+class SettingsController extends \Gabela\Core\AbstractController
+{
+    public function Action()
     {
-        public function Action()
-        {
-            $this->getTemplate(ADMIN_SETTINGS);
-        }
+        $this->getTemplate(ADMIN_SETTINGS);
     }
+}
 
-    Middleware::resolve('admin');
+Middleware::resolve('admin');
